@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setBottomNavItemsListener() {
-        binding.bnav.setOnItemSelectedListener {
+        binding.bNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_setting -> {
                     Log.d("Nav click", "nav_setting")
