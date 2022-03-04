@@ -1,16 +1,18 @@
 package com.nursultan.shoppingapp.presentation.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.databinding.FragmentNoteBinding
 
 
 class NoteFragment : BaseFragment() {
-    private var binding: FragmentNoteBinding? = null
+
+    private var _binding: FragmentNoteBinding? = null
+    private val binding: FragmentNoteBinding
+        get() = _binding ?: throw RuntimeException("FragmentNoteBinding is null")
+
     override fun onClickNew() {
         TODO("Not yet implemented")
     }
@@ -18,9 +20,9 @@ class NoteFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentNoteBinding.inflate(inflater, container, false)
-        return binding?.root
+    ): View {
+        _binding = FragmentNoteBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     companion object {
@@ -29,7 +31,7 @@ class NoteFragment : BaseFragment() {
     }
 
     override fun onDestroyView() {
-        binding=null
+        _binding = null
         super.onDestroyView()
     }
 }
