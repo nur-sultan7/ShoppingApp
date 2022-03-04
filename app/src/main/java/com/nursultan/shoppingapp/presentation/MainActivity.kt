@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.databinding.ActivityMainBinding
+import com.nursultan.shoppingapp.presentation.fragments.FragmentManager
+import com.nursultan.shoppingapp.presentation.fragments.NoteFragment
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy {
@@ -24,7 +26,7 @@ class MainActivity : AppCompatActivity() {
                     Log.d("Nav click", "nav_setting")
                 }
                 R.id.nav_notes -> {
-                    Log.d("Nav click", "nav_notes")
+                    FragmentManager.setFragment(this, NoteFragment.newInstance())
                 }
                 R.id.nav_shopping_list -> {
                     Log.d("Nav click", "nav_shopping_list")
