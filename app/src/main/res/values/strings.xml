@@ -4,6 +4,7 @@
     <string name="notes">Notes</string>
     <string name="shopping_list">Shopping list</string>
     <string name="new_item">New</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ed_title">Title</string>
+    <string name="ed_description">Description</string>
+    <string name="menu_title_save">Save</string>
 </resources>

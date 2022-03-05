@@ -1,10 +1,12 @@
 package com.nursultan.shoppingapp.presentation.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nursultan.shoppingapp.databinding.FragmentNoteBinding
+import com.nursultan.shoppingapp.presentation.NewNoteActivity
 
 
 class NoteFragment : BaseFragment() {
@@ -14,7 +16,7 @@ class NoteFragment : BaseFragment() {
         get() = _binding ?: throw RuntimeException("FragmentNoteBinding is null")
 
     override fun onClickNew() {
-        TODO("Not yet implemented")
+        startActivity(Intent(activity, NewNoteActivity::class.java))
     }
 
     override fun onCreateView(
