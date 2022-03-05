@@ -18,6 +18,7 @@ class NoteFragment : BaseFragment() {
     private var _binding: FragmentNoteBinding? = null
     private val binding: FragmentNoteBinding
         get() = _binding ?: throw RuntimeException("FragmentNoteBinding is null")
+
     private val mainViewModel: MainViewModel by activityViewModels {
         ViewModelFactory((context?.applicationContext as ShoppingApp).appDatabase)
     }
