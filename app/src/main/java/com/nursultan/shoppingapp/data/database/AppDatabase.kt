@@ -9,8 +9,9 @@ import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import com.nursultan.shoppingapp.data.database.model.ShoppingListItemDbModel
 import com.nursultan.shoppingapp.data.database.model.ShoppingListNamesDbModel
 
-@Database(entities = [LibraryItemDbModel::class, NoteItemDbModel::class,
-    ShoppingListItemDbModel::class, ShoppingListNamesDbModel::class],
+@Database(
+    entities = [LibraryItemDbModel::class, NoteItemDbModel::class,
+        ShoppingListItemDbModel::class, ShoppingListNamesDbModel::class],
     version = 1,
     exportSchema = false
 )
@@ -34,4 +35,6 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
     }
+
+    abstract fun getDao(): AppDao
 }
