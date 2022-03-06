@@ -8,15 +8,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.nursultan.shoppingapp.ShoppingApp
+import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import com.nursultan.shoppingapp.databinding.FragmentNoteBinding
 import com.nursultan.shoppingapp.presentation.MainViewModel
 import com.nursultan.shoppingapp.presentation.NewNoteActivity
 import com.nursultan.shoppingapp.presentation.ViewModelFactory
+import com.nursultan.shoppingapp.presentation.adapters.NotesListAdapter
 
 
 class NoteFragment : BaseFragment() {
@@ -30,11 +35,10 @@ class NoteFragment : BaseFragment() {
     }
 
     private lateinit var newNoteLauncher: ActivityResultLauncher<Intent>
+    private lateinit var adapter: NotesListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mainViewModel.allNotes.observe(this) {
-        }
         onNewNoteResult()
     }
 
@@ -55,21 +59,39 @@ class NoteFragment : BaseFragment() {
         super.onDestroyView()
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViews()
+        setObservers()
+    }
+
+    private fun initViews() = with(binding)
+    {
+        rcViewNotes.layoutManager = LinearLayoutManager(activity)
+        adapter = NotesListAdapter()
+        rcViewNotes.adapter = adapter
+    }
+
+    private fun setObservers() {
+        mainViewModel.allNotes.observe(viewLifecycleOwner)
+        {
+            adapter.submitList(it)
+        }
+    }
+
     private fun onNewNoteResult() {
         newNoteLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         )
         {
             if (it.resultCode == Activity.RESULT_OK) {
-                Log.d(TITLE, "title: ${it.data?.getStringExtra(TITLE)}")
-                Log.d(DESC, "description: ${it.data?.getStringExtra(DESC)}")
+                mainViewModel.insertNote(it.data?.getSerializableExtra(NEW_NOTE) as NoteItemDbModel)
             }
         }
     }
 
     companion object {
-        const val TITLE = "title"
-        const val DESC = "description"
+        const val NEW_NOTE = "new note"
 
         @JvmStatic
         fun newInstance() = NoteFragment()

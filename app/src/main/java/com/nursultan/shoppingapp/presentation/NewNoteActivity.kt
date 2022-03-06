@@ -43,8 +43,7 @@ class NewNoteActivity : AppCompatActivity() {
 
     private fun setResult() {
         val intent = Intent().apply {
-            putExtra(NoteFragment.TITLE, binding.edTitle.text.toString())
-            putExtra(NoteFragment.DESC, binding.edDescription.text.toString())
+
         }
         setResult(RESULT_OK, intent)
         finish()

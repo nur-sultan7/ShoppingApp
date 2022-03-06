@@ -2,6 +2,7 @@ package com.nursultan.shoppingapp.data.database.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "note_list")
 data class NoteItemDbModel(
@@ -11,4 +12,4 @@ data class NoteItemDbModel(
     val content: String,
     val time: String,
     val category: String
-)
+) : Serializable
