@@ -12,6 +12,7 @@ import android.widget.LinearLayout
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.registerForActivityResult
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -43,7 +44,7 @@ class NoteFragment : BaseFragment() {
     }
 
     override fun onClickNew() {
-        startActivity(Intent(activity, NewNoteActivity::class.java))
+        newNoteLauncher.launch(Intent(activity, NewNoteActivity::class.java))
     }
 
     override fun onCreateView(
@@ -80,14 +81,14 @@ class NoteFragment : BaseFragment() {
     }
 
     private fun onNewNoteResult() {
-        newNoteLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
-        )
-        {
-            if (it.resultCode == Activity.RESULT_OK) {
-                mainViewModel.insertNote(it.data?.getSerializableExtra(NEW_NOTE) as NoteItemDbModel)
+        newNoteLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            {
+                if (it.resultCode == Activity.RESULT_OK) {
+                    mainViewModel.insertNote(
+                        it.data?.getSerializableExtra(NEW_NOTE) as NoteItemDbModel)
+                }
             }
-        }
     }
 
     companion object {
