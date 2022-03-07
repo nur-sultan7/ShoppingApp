@@ -7,4 +7,5 @@
     <string name="ed_title">Title</string>
     <string name="ed_description">Description</string>
     <string name="menu_title_save">Save</string>
+    <string name="ic_delete">ic_delete</string>
 </resources>

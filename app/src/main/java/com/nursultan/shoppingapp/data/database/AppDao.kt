@@ -14,4 +14,7 @@ interface AppDao {
 
     @Query("select * from note_list")
     fun getAllNotes(): Flow<List<NoteItemDbModel>>
+
+    @Query("delete from note_list where id is :id")
+    suspend fun deleteNote(id: Int)
 }

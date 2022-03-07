@@ -64,6 +64,7 @@ class NoteFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews()
         setObservers()
+        setOnClickListeners()
     }
 
     private fun initViews() = with(binding)
@@ -80,13 +81,20 @@ class NoteFragment : BaseFragment() {
         }
     }
 
+    private fun setOnClickListeners() {
+        adapter.setOnDeleteListener = {
+            mainViewModel.deleteNote(it)
+        }
+    }
+
     private fun onNewNoteResult() {
         newNoteLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             {
                 if (it.resultCode == Activity.RESULT_OK) {
                     mainViewModel.insertNote(
-                        it.data?.getSerializableExtra(NEW_NOTE) as NoteItemDbModel)
+                        it.data?.getSerializableExtra(NEW_NOTE) as NoteItemDbModel
+                    )
                 }
             }
     }

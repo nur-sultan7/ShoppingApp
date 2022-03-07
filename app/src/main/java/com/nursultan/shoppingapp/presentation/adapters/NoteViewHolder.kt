@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import com.nursultan.shoppingapp.databinding.NoteListItemBinding
 
-class NoteViewHolder(private val binding: NoteListItemBinding) :
+class NoteViewHolder(val binding: NoteListItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun setData(note: NoteItemDbModel) {
         with(binding)
