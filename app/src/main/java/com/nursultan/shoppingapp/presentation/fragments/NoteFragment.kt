@@ -91,13 +91,24 @@ class NoteFragment : BaseFragment() {
         newNoteLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             {
-                if (it.resultCode == NEW_RESULT_CODE) {
 
-                    mainViewModel.insertNote(
-                        it.data?.getSerializableExtra(NEW_NOTE) as NoteItemDbModel
-                    )
+                when(it.resultCode)
+                {
+                    EDIT_RESULT_CODE->
+                    {
+                        mainViewModel.updateNote(
+                            (it.data?.getSerializableExtra(ED_NOTE)
+                                ?: throw RuntimeException("updated note is null")) as NoteItemDbModel
+                        )
+                    }
+                    UPDATE_RESULT_CODE->
+                    {
+                        mainViewModel.insertNote(
+                            (it.data?.getSerializableExtra(NEW_NOTE)
+                                ?: throw RuntimeException("new note is null")) as NoteItemDbModel
+                        )
+                    }
                 }
-
 
             }
     }
@@ -105,8 +116,8 @@ class NoteFragment : BaseFragment() {
     companion object {
         const val NEW_NOTE = "new_note"
         const val ED_NOTE = "edit_note"
-        const val EDIT_RESULT_CODE = 1
-        const val NEW_RESULT_CODE = 0
+        const val EDIT_RESULT_CODE = 121
+        const val UPDATE_RESULT_CODE = 120
 
         @JvmStatic
         fun newInstance() = NoteFragment()

@@ -1,6 +1,5 @@
 package com.nursultan.shoppingapp.presentation
 
-import android.app.Activity
 import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
@@ -56,7 +55,7 @@ class NewNoteActivity : AppCompatActivity() {
                 NoteFragment.EDIT_RESULT_CODE
             } else {
                 putExtra(NoteFragment.NEW_NOTE, createNewNote())
-                NoteFragment.NEW_RESULT_CODE
+                NoteFragment.UPDATE_RESULT_CODE
             }
         }
         setResult(resultCode, intent)
