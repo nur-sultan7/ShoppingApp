@@ -1,21 +1,14 @@
 package com.nursultan.shoppingapp.presentation.fragments
 
-import android.app.Activity
-import android.app.Instrumentation
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.registerForActivityResult
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.nursultan.shoppingapp.ShoppingApp
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import com.nursultan.shoppingapp.databinding.FragmentNoteBinding
@@ -85,22 +78,35 @@ class NoteFragment : BaseFragment() {
         adapter.setOnDeleteListener = {
             mainViewModel.deleteNote(it)
         }
+        adapter.setOnItemClickListener = {
+            newNoteLauncher.launch(
+                Intent(activity, NewNoteActivity::class.java).apply {
+                    putExtra(ED_NOTE, it)
+                }
+            )
+        }
     }
 
     private fun onNewNoteResult() {
         newNoteLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             {
-                if (it.resultCode == Activity.RESULT_OK) {
+                if (it.resultCode == NEW_RESULT_CODE) {
+
                     mainViewModel.insertNote(
                         it.data?.getSerializableExtra(NEW_NOTE) as NoteItemDbModel
                     )
                 }
+
+
             }
     }
 
     companion object {
-        const val NEW_NOTE = "new note"
+        const val NEW_NOTE = "new_note"
+        const val ED_NOTE = "edit_note"
+        const val EDIT_RESULT_CODE = 1
+        const val NEW_RESULT_CODE = 0
 
         @JvmStatic
         fun newInstance() = NoteFragment()

@@ -3,6 +3,7 @@ package com.nursultan.shoppingapp.data.database
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import kotlinx.coroutines.flow.Flow
 
@@ -17,4 +18,7 @@ interface AppDao {
 
     @Query("delete from note_list where id is :id")
     suspend fun deleteNote(id: Int)
+
+    @Update
+    suspend fun updateNote(note: NoteItemDbModel)
 }

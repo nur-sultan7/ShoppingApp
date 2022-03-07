@@ -18,11 +18,13 @@ class NewNoteActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityNewNoteBinding.inflate(layoutInflater)
     }
+    private var edNote: NoteItemDbModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setActionBarSetting()
+        getNote()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -47,10 +49,17 @@ class NewNoteActivity : AppCompatActivity() {
     }
 
     private fun setActivityResult() {
+        val resultCode: Int
         val intent = Intent().apply {
-            putExtra(NoteFragment.NEW_NOTE, createNewNote())
+            resultCode = if (edNote != null) {
+                putExtra(NoteFragment.ED_NOTE, updateNote())
+                NoteFragment.EDIT_RESULT_CODE
+            } else {
+                putExtra(NoteFragment.NEW_NOTE, createNewNote())
+                NoteFragment.NEW_RESULT_CODE
+            }
         }
-        setResult(Activity.RESULT_OK, intent)
+        setResult(resultCode, intent)
         finish()
     }
 
@@ -61,8 +70,28 @@ class NewNoteActivity : AppCompatActivity() {
         category = ""
     )
 
+    private fun updateNote(): NoteItemDbModel? = with(binding)
+    {
+        return edNote?.copy(
+            title = edTitle.text.toString(),
+            content = edDescription.text.toString()
+        )
+    }
+
     private fun getCurrentTime(): String {
         val currentTime = SimpleDateFormat("hh:mm:ss - yyyy/MM/dd", Locale.getDefault())
         return currentTime.format(Calendar.getInstance().time)
+    }
+
+    private fun getNote() {
+        val note = intent.getSerializableExtra(NoteFragment.ED_NOTE)
+        note?.let {
+            edNote = note as NoteItemDbModel
+            with(binding)
+            {
+                edTitle.setText(edNote?.title)
+                edDescription.setText(edNote?.content)
+            }
+        }
     }
 }

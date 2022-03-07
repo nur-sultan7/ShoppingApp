@@ -7,6 +7,7 @@ import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 class NotesListAdapter : ListAdapter<NoteItemDbModel, NoteViewHolder>(NoteDiffUtil) {
 
     lateinit var setOnDeleteListener: (id: Int) -> Unit
+    lateinit var setOnItemClickListener: (note: NoteItemDbModel) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         return NoteViewHolder.create(parent)
@@ -17,6 +18,9 @@ class NotesListAdapter : ListAdapter<NoteItemDbModel, NoteViewHolder>(NoteDiffUt
         holder.setData(item)
         holder.binding.ivDelete.setOnClickListener {
             setOnDeleteListener(item.id)
+        }
+        holder.binding.root.setOnClickListener {
+            setOnItemClickListener.invoke(item)
         }
     }
 }
