@@ -5,6 +5,14 @@
         android:id="@+id/new_note_save"
         android:title="@string/menu_title_save"
         android:icon="@drawable/ic_save"
+        android:orderInCategory="2"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/new_note_bold"
+        android:title="@string/menu_title_bold"
+        android:icon="@drawable/ic_bold"
+        android:orderInCategory="1"
         app:showAsAction="ifRoom"
         />
 </menu>

@@ -1,8 +1,11 @@
 package com.nursultan.shoppingapp.presentation
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.icu.util.Calendar
 import android.os.Bundle
+import android.text.Spannable
+import android.text.style.StyleSpan
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -38,6 +41,9 @@ class NewNoteActivity : AppCompatActivity() {
             }
             android.R.id.home -> {
                 finish()
+            }
+            R.id.new_note_bold -> {
+                setSelectedTextBold()
             }
         }
         return super.onOptionsItemSelected(item)
@@ -92,5 +98,24 @@ class NewNoteActivity : AppCompatActivity() {
                 edDescription.setText(edNote?.content)
             }
         }
+    }
+
+    private fun setSelectedTextBold() = with(binding)
+    {
+        val firstIndex = edDescription.selectionStart
+        val lastIndex = edDescription.selectionEnd
+        val styles = edDescription.text.getSpans(firstIndex, lastIndex, StyleSpan::class.java)
+        if (styles.isNotEmpty()) {
+            edDescription.text.removeSpan(styles[0])
+        } else {
+            edDescription.text.setSpan(
+                StyleSpan(Typeface.BOLD),
+                firstIndex,
+                lastIndex,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        }
+        edDescription.text.trim()
+        edDescription.setSelection(firstIndex)
     }
 }
