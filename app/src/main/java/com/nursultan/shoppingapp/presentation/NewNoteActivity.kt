@@ -51,9 +51,11 @@ class NewNoteActivity : AppCompatActivity() {
             R.id.new_note_bold -> {
                 setSelectedTextBold()
             }
-            R.id.new_note_color_picker ->
-            {
-                openColorPicker()
+            R.id.new_note_color_picker -> {
+                if (binding.colorPicker.isShown)
+                    closeColorPicker()
+                else
+                    openColorPicker()
             }
         }
         return super.onOptionsItemSelected(item)
@@ -134,13 +136,12 @@ class NewNoteActivity : AppCompatActivity() {
         val openAnim = AnimationUtils.loadAnimation(this, R.anim.open_color_picker)
         binding.colorPicker.startAnimation(openAnim)
     }
-    private fun closeColorPicker()
-    {
+
+    private fun closeColorPicker() {
         val closeAnim = AnimationUtils.loadAnimation(this, R.anim.close_color_picker)
-        closeAnim.setAnimationListener(object : CloseAnimationListener()
-        {
+        closeAnim.setAnimationListener(object : CloseAnimationListener() {
             override fun onAnimationEnd(animation: Animation?) {
-                binding.colorPicker.visibility=View.GONE
+                binding.colorPicker.visibility = View.GONE
             }
         })
         binding.colorPicker.startAnimation(closeAnim)
