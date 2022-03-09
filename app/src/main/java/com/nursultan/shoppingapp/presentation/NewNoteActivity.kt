@@ -8,11 +8,15 @@ import android.text.Spannable
 import android.text.style.StyleSpan
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import com.nursultan.shoppingapp.databinding.ActivityNewNoteBinding
 import com.nursultan.shoppingapp.presentation.fragments.NoteFragment
+import com.nursultan.shoppingapp.utils.CloseAnimationListener
 import com.nursultan.shoppingapp.utils.HtmlManager
 import java.lang.RuntimeException
 import java.text.SimpleDateFormat
@@ -46,6 +50,10 @@ class NewNoteActivity : AppCompatActivity() {
             }
             R.id.new_note_bold -> {
                 setSelectedTextBold()
+            }
+            R.id.new_note_color_picker ->
+            {
+                openColorPicker()
             }
         }
         return super.onOptionsItemSelected(item)
@@ -119,5 +127,22 @@ class NewNoteActivity : AppCompatActivity() {
         }
         edDescription.text.trim()
         edDescription.setSelection(firstIndex)
+    }
+
+    private fun openColorPicker() {
+        binding.colorPicker.visibility = View.VISIBLE
+        val openAnim = AnimationUtils.loadAnimation(this, R.anim.open_color_picker)
+        binding.colorPicker.startAnimation(openAnim)
+    }
+    private fun closeColorPicker()
+    {
+        val closeAnim = AnimationUtils.loadAnimation(this, R.anim.close_color_picker)
+        closeAnim.setAnimationListener(object : CloseAnimationListener()
+        {
+            override fun onAnimationEnd(animation: Animation?) {
+                binding.colorPicker.visibility=View.GONE
+            }
+        })
+        binding.colorPicker.startAnimation(closeAnim)
     }
 }
