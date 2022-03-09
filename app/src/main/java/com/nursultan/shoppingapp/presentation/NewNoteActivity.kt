@@ -13,6 +13,8 @@ import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import com.nursultan.shoppingapp.databinding.ActivityNewNoteBinding
 import com.nursultan.shoppingapp.presentation.fragments.NoteFragment
+import com.nursultan.shoppingapp.utils.HtmlManager
+import java.lang.RuntimeException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -70,7 +72,7 @@ class NewNoteActivity : AppCompatActivity() {
 
     private fun createNewNote() = NoteItemDbModel(
         title = binding.edTitle.text.toString(),
-        content = binding.edDescription.text.toString(),
+        content = HtmlManager.toHtml(binding.edDescription.text),
         time = getCurrentTime(),
         category = ""
     )
@@ -79,7 +81,7 @@ class NewNoteActivity : AppCompatActivity() {
     {
         return edNote?.copy(
             title = edTitle.text.toString(),
-            content = edDescription.text.toString()
+            content = HtmlManager.toHtml(edDescription.text)
         )
     }
 
@@ -90,12 +92,12 @@ class NewNoteActivity : AppCompatActivity() {
 
     private fun getNote() {
         val note = intent.getSerializableExtra(NoteFragment.ED_NOTE)
-        note?.let {
-            edNote = note as NoteItemDbModel
+        edNote = note?.let { it as NoteItemDbModel }
+        edNote?.let {
             with(binding)
             {
-                edTitle.setText(edNote?.title)
-                edDescription.setText(edNote?.content)
+                edTitle.setText(it.title)
+                edDescription.setText(HtmlManager.getFromHtml(it.content))
             }
         }
     }
