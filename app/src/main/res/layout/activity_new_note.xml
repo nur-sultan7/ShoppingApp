@@ -25,16 +25,16 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:autofillHints=""
-                android:ems="10"
                 android:gravity="top"
                 android:hint="@string/ed_description"
                 android:inputType="textPersonName"
-                android:textSize="16sp"
+                android:textSize="17sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/edTitle"
+                tools:ignore="TextContrastCheck" />
 
             <EditText
                 android:id="@+id/edTitle"
@@ -52,4 +52,83 @@
 
     </androidx.cardview.widget.CardView>
 
+
+    <TableLayout
+        android:id="@+id/color_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#51B5B3B3"
+        android:elevation="5dp"
+        android:orientation="vertical"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@color/picker_green"
+                android:contentDescription="@string/picker_color"
+                app:srcCompat="@null" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@color/picker_blue"
+                android:contentDescription="@string/picker_color"
+                app:srcCompat="@null" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@color/picker_orange"
+                android:contentDescription="@string/picker_color"
+                app:srcCompat="@null" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@color/picker_purple"
+                android:contentDescription="@string/picker_color"
+                app:srcCompat="@null" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@color/picker_red"
+                android:contentDescription="@string/picker_color"
+                app:srcCompat="@null" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@color/picker_yellow"
+                android:contentDescription="@string/picker_color"
+                app:srcCompat="@null" />
+        </TableRow>
+
+    </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

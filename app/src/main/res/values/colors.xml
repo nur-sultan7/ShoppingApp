@@ -9,4 +9,11 @@
     <color name="deep_green">#027065</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="picker_red">#F44336</color>
+    <color name="picker_orange">#FF5722</color>
+    <color name="picker_blue">#00BCD4</color>
+    <color name="picker_yellow">#FFEB3B</color>
+    <color name="picker_green">#4CAF50</color>
+    <color name="picker_purple">#673AB7</color>
 </resources>

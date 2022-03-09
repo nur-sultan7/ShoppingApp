@@ -9,4 +9,5 @@
     <string name="menu_title_save">Save</string>
     <string name="ic_delete">ic_delete</string>
     <string name="menu_title_bold">Bold</string>
+    <string name="picker_color">picker color</string>
 </resources>
