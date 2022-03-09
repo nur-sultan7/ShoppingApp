@@ -54,6 +54,7 @@
 
 
     <TableLayout
+        android:visibility="gone"
         android:id="@+id/color_picker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
