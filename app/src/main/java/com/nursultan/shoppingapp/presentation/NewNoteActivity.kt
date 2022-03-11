@@ -3,16 +3,21 @@ package com.nursultan.shoppingapp.presentation
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.text.Spannable
+import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.TableRow
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.forEach
+import androidx.core.view.iterator
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import com.nursultan.shoppingapp.databinding.ActivityNewNoteBinding
@@ -20,7 +25,6 @@ import com.nursultan.shoppingapp.presentation.fragments.NoteFragment
 import com.nursultan.shoppingapp.utils.CloseAnimationListener
 import com.nursultan.shoppingapp.utils.HtmlManager
 import com.nursultan.shoppingapp.utils.OnNoteTouchListener
-import java.lang.RuntimeException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,7 +39,8 @@ class NewNoteActivity : AppCompatActivity() {
         setContentView(binding.root)
         setActionBarSetting()
         getNote()
-        setListeners()
+        setOnTouchListeners()
+        setOnClickListeners()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -110,7 +115,7 @@ class NewNoteActivity : AppCompatActivity() {
             with(binding)
             {
                 edTitle.setText(it.title)
-                edDescription.setText(HtmlManager.getFromHtml(it.content))
+                edDescription.setText(HtmlManager.getFromHtml(it.content).trim())
             }
         }
     }
@@ -151,7 +156,39 @@ class NewNoteActivity : AppCompatActivity() {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private fun setListeners() {
+    private fun setOnTouchListeners() {
         binding.colorPicker.setOnTouchListener(OnNoteTouchListener())
+    }
+
+    private fun setOnClickListeners() {
+        binding.colorPicker.forEach { row ->
+            row as TableRow
+            for (view in row) {
+                view.setOnClickListener {
+                    setSelectedTextColor((view.background as ColorDrawable).color)
+                }
+            }
+        }
+    }
+
+    private fun setSelectedTextColor(colorId: Int) = with(binding) {
+        val firstIndex = edDescription.selectionStart
+        val lastIndex = edDescription.selectionEnd
+        val styles =
+            edDescription.text.getSpans(
+                firstIndex,
+                lastIndex,
+                ForegroundColorSpan::class.java
+            )
+        if (styles.isNotEmpty())
+            edDescription.text.removeSpan(styles[0])
+        edDescription.text.setSpan(
+            ForegroundColorSpan(colorId),
+            firstIndex,
+            lastIndex,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        edDescription.text.trim()
+        edDescription.setSelection(firstIndex)
     }
 }
