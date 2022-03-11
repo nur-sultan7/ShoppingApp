@@ -23,6 +23,7 @@ import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import com.nursultan.shoppingapp.databinding.ActivityNewNoteBinding
 import com.nursultan.shoppingapp.presentation.fragments.NoteFragment
 import com.nursultan.shoppingapp.utils.CloseAnimationListener
+import com.nursultan.shoppingapp.utils.EditTextActionMode
 import com.nursultan.shoppingapp.utils.HtmlManager
 import com.nursultan.shoppingapp.utils.OnNoteTouchListener
 import java.text.SimpleDateFormat
@@ -41,6 +42,7 @@ class NewNoteActivity : AppCompatActivity() {
         getNote()
         setOnTouchListeners()
         setOnClickListeners()
+        setEditTextActionMode()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -135,7 +137,6 @@ class NewNoteActivity : AppCompatActivity() {
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
         }
-        edDescription.text.trim()
         edDescription.setSelection(firstIndex)
     }
 
@@ -188,7 +189,10 @@ class NewNoteActivity : AppCompatActivity() {
             lastIndex,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-        edDescription.text.trim()
         edDescription.setSelection(firstIndex)
+    }
+
+    private fun setEditTextActionMode() {
+        binding.edDescription.customSelectionActionModeCallback = EditTextActionMode
     }
 }
