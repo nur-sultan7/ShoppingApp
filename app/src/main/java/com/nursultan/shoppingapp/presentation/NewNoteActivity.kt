@@ -1,5 +1,6 @@
 package com.nursultan.shoppingapp.presentation
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Typeface
 import android.icu.util.Calendar
@@ -18,6 +19,7 @@ import com.nursultan.shoppingapp.databinding.ActivityNewNoteBinding
 import com.nursultan.shoppingapp.presentation.fragments.NoteFragment
 import com.nursultan.shoppingapp.utils.CloseAnimationListener
 import com.nursultan.shoppingapp.utils.HtmlManager
+import com.nursultan.shoppingapp.utils.OnNoteTouchListener
 import java.lang.RuntimeException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -33,6 +35,7 @@ class NewNoteActivity : AppCompatActivity() {
         setContentView(binding.root)
         setActionBarSetting()
         getNote()
+        setListeners()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -145,5 +148,10 @@ class NewNoteActivity : AppCompatActivity() {
             }
         })
         binding.colorPicker.startAnimation(closeAnim)
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setListeners() {
+        binding.colorPicker.setOnTouchListener(OnNoteTouchListener())
     }
 }
