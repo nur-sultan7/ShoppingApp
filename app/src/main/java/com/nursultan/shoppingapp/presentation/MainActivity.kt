@@ -1,8 +1,8 @@
 package com.nursultan.shoppingapp.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.databinding.ActivityMainBinding
 import com.nursultan.shoppingapp.presentation.dialogs.NewListDialog
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_new_item -> {
                     //FragmentManager.currentFrag?.onClickNew()
-                    NewListDialog.showDialog(this){name->
+                    NewListDialog.showDialog(this) { name ->
                         Log.d("App Test", "name is: $name")
                     }
                 }
