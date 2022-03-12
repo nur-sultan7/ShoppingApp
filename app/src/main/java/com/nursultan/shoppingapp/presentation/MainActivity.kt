@@ -8,6 +8,7 @@ import com.nursultan.shoppingapp.databinding.ActivityMainBinding
 import com.nursultan.shoppingapp.presentation.dialogs.NewListDialog
 import com.nursultan.shoppingapp.presentation.fragments.FragmentManager
 import com.nursultan.shoppingapp.presentation.fragments.NoteFragment
+import com.nursultan.shoppingapp.presentation.fragments.ShopListNamesFragment
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy {
@@ -30,13 +31,10 @@ class MainActivity : AppCompatActivity() {
                     FragmentManager.setFragment(this, NoteFragment.newInstance())
                 }
                 R.id.nav_shopping_list -> {
-                    Log.d("Nav click", "nav_shopping_list")
+                    FragmentManager.setFragment(this, ShopListNamesFragment.newInstance())
                 }
                 R.id.nav_new_item -> {
-                    //FragmentManager.currentFrag?.onClickNew()
-                    NewListDialog.showDialog(this) { name ->
-                        Log.d("App Test", "name is: $name")
-                    }
+                    FragmentManager.currentFrag?.onClickNew()
                 }
             }
             true
