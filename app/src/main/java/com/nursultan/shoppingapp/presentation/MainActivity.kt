@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.databinding.ActivityMainBinding
+import com.nursultan.shoppingapp.presentation.dialogs.NewListDialog
 import com.nursultan.shoppingapp.presentation.fragments.FragmentManager
 import com.nursultan.shoppingapp.presentation.fragments.NoteFragment
 
@@ -32,7 +33,10 @@ class MainActivity : AppCompatActivity() {
                     Log.d("Nav click", "nav_shopping_list")
                 }
                 R.id.nav_new_item -> {
-                    FragmentManager.currentFrag?.onClickNew()
+                    //FragmentManager.currentFrag?.onClickNew()
+                    NewListDialog.showDialog(this){name->
+                        Log.d("App Test", "name is: $name")
+                    }
                 }
             }
             true

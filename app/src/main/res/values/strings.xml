@@ -10,4 +10,7 @@
     <string name="ic_delete">ic_delete</string>
     <string name="menu_title_bold">Bold</string>
     <string name="picker_color">picker color</string>
+    <string name="dialog_new_list_name_hint">New List</string>
+    <string name="dialog_new_list_btn_create_title">Save</string>
+    <string name="dialog_new_list_title">New list name</string>
 </resources>
