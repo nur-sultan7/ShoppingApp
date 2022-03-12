@@ -3,23 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/new_note_save"
-        android:title="@string/menu_title_save"
         android:icon="@drawable/ic_save"
         android:orderInCategory="3"
-        app:showAsAction="ifRoom"
-        />
+        android:title="@string/menu_title_save"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/new_note_bold"
-        android:title="@string/menu_title_bold"
         android:icon="@drawable/ic_bold"
         android:orderInCategory="2"
-        app:showAsAction="ifRoom"
-        />
+        android:title="@string/menu_title_bold"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/new_note_color_picker"
-        android:title="@string/menu_title_bold"
         android:icon="@drawable/ic_color_picker"
         android:orderInCategory="1"
-        app:showAsAction="ifRoom"
-        />
+        android:title="@string/menu_title_bold"
+        app:showAsAction="ifRoom" />
 </menu>
