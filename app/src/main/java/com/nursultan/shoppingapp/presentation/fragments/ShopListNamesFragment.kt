@@ -7,12 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.ShoppingApp
 import com.nursultan.shoppingapp.data.database.model.ShoppingListNameDbModel
 import com.nursultan.shoppingapp.databinding.FragmentShopListNamesBinding
 import com.nursultan.shoppingapp.presentation.MainViewModel
 import com.nursultan.shoppingapp.presentation.ViewModelFactory
+import com.nursultan.shoppingapp.presentation.adapters.ShopListNamesAdapter
 import com.nursultan.shoppingapp.presentation.dialogs.NewListDialog
 import com.nursultan.shoppingapp.utils.TimeManager
 import java.lang.RuntimeException
@@ -26,6 +28,7 @@ class ShopListNamesFragment : BaseFragment() {
     private val viewModel: MainViewModel by activityViewModels {
         ViewModelFactory((requireContext().applicationContext as ShoppingApp).appDatabase)
     }
+    private lateinit var adapter: ShopListNamesAdapter
 
     override fun onClickNew() {
         NewListDialog.showDialog(requireContext()) { listName ->
@@ -53,9 +56,21 @@ class ShopListNamesFragment : BaseFragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViews()
+        setObservers()
+    }
+
+    private fun initViews() {
+        binding.rcViewShopListNames.layoutManager = LinearLayoutManager(activity)
+        adapter = ShopListNamesAdapter()
+        binding.rcViewShopListNames.adapter = adapter
+    }
+
     private fun setObservers() {
         viewModel.allShoppingListNames.observe(viewLifecycleOwner) {
-
+            adapter.submitList(it)
         }
     }
 

@@ -19,4 +19,5 @@
     <string name="list_name_counter_title">0/0</string>
     <string name="description_image_button_delete">image button delete</string>
     <string name="description_image_button_edit">image button edit</string>
+    <string name="sop_list_name_list_is_empty_title">list is empty</string>
 </resources>
