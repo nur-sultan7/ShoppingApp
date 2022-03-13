@@ -22,10 +22,7 @@ import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import com.nursultan.shoppingapp.databinding.ActivityNewNoteBinding
 import com.nursultan.shoppingapp.presentation.fragments.NoteFragment
-import com.nursultan.shoppingapp.utils.CloseAnimationListener
-import com.nursultan.shoppingapp.utils.EditTextActionMode
-import com.nursultan.shoppingapp.utils.HtmlManager
-import com.nursultan.shoppingapp.utils.OnNoteTouchListener
+import com.nursultan.shoppingapp.utils.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -93,7 +90,7 @@ class NewNoteActivity : AppCompatActivity() {
     private fun createNewNote() = NoteItemDbModel(
         title = binding.edTitle.text.toString(),
         content = HtmlManager.toHtml(binding.edDescription.text),
-        time = getCurrentTime(),
+        time = TimeManager.getCurrentTime(),
         category = ""
     )
 
@@ -103,11 +100,6 @@ class NewNoteActivity : AppCompatActivity() {
             title = edTitle.text.toString(),
             content = HtmlManager.toHtml(edDescription.text)
         )
-    }
-
-    private fun getCurrentTime(): String {
-        val currentTime = SimpleDateFormat("hh:mm:ss - yyyy/MM/dd", Locale.getDefault())
-        return currentTime.format(Calendar.getInstance().time)
     }
 
     private fun getNote() {

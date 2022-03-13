@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(tableName = "shopping_list_names")
-data class ShoppingListNamesDbModel(
+data class ShoppingListNameDbModel(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
     @ColumnInfo(name = "name")
