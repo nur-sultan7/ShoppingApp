@@ -20,4 +20,7 @@
     <string name="description_image_button_delete">image button delete</string>
     <string name="description_image_button_edit">image button edit</string>
     <string name="sop_list_name_list_is_empty_title">list is empty</string>
+    <string name="dialog_delete_title">Delete</string>
+    <string name="dialog_delete_alert">Do you want delete this item?</string>
+    <string name="dialog_delete_cancel">Cancel</string>
 </resources>

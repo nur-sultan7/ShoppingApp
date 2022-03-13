@@ -15,6 +15,7 @@ import com.nursultan.shoppingapp.databinding.FragmentShopListNamesBinding
 import com.nursultan.shoppingapp.presentation.MainViewModel
 import com.nursultan.shoppingapp.presentation.ViewModelFactory
 import com.nursultan.shoppingapp.presentation.adapters.ShopListNamesAdapter
+import com.nursultan.shoppingapp.presentation.dialogs.DeleteShopListNameDialog
 import com.nursultan.shoppingapp.presentation.dialogs.NewListDialog
 import com.nursultan.shoppingapp.utils.TimeManager
 import java.lang.RuntimeException
@@ -60,6 +61,7 @@ class ShopListNamesFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews()
         setObservers()
+        setListeners()
     }
 
     private fun initViews() {
@@ -71,6 +73,14 @@ class ShopListNamesFragment : BaseFragment() {
     private fun setObservers() {
         viewModel.allShoppingListNames.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+        }
+    }
+
+    private fun setListeners() {
+        adapter.onDeleteClickListener = { id ->
+            DeleteShopListNameDialog.show(requireContext()) {
+                viewModel.deleteShoppingList(id)
+            }
         }
     }
 
