@@ -14,4 +14,9 @@
     <string name="dialog_new_list_btn_create_title">Save</string>
     <string name="dialog_new_list_title">New list name</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="list_name_time">Time</string>
+    <string name="list_name_title">TextView</string>
+    <string name="list_name_counter_title">0/0</string>
+    <string name="description_image_button_delete">image button delete</string>
+    <string name="description_image_button_edit">image button edit</string>
 </resources>

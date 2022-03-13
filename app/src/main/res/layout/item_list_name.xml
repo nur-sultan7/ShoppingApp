@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        app:cardCornerRadius="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tvListName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/list_name_title"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/list_name_time" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imBtnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:background="#F44336"
+        android:contentDescription="@string/description_image_button_delete"
+        android:elevation="10dp"
+        android:padding="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="@+id/cardView"
+        app:srcCompat="@drawable/ic_delete"
+        tools:ignore="RedundantDescriptionCheck" />
+
+    <ImageView
+        android:id="@+id/imBtnEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="#4CAF50"
+        android:contentDescription="@string/description_image_button_edit"
+        android:elevation="10dp"
+        android:padding="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintEnd_toStartOf="@+id/imBtnDelete"
+        app:layout_constraintTop_toTopOf="@+id/cardView"
+        app:srcCompat="@drawable/ic_edit"
+        tools:ignore="ImageContrastCheck,RedundantDescriptionCheck" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imBtnEdit"
+        app:layout_constraintEnd_toStartOf="@+id/imBtnEdit"
+        app:layout_constraintTop_toTopOf="@+id/imBtnEdit">
+
+        <TextView
+            android:id="@+id/tvCounter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#2196F3"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/list_name_counter_title"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:ignore="TextContrastCheck" />
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
