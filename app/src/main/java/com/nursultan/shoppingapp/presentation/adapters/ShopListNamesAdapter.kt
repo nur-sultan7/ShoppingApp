@@ -7,6 +7,7 @@ import com.nursultan.shoppingapp.data.database.model.ShoppingListNameDbModel
 class ShopListNamesAdapter :
     ListAdapter<ShoppingListNameDbModel, ShopListNameHolder>(ShopListNameDiffUtil) {
     var onDeleteClickListener: ((id: Int) -> Unit)? = null
+    var onEditClickListener: ((ShoppingListNameDbModel)->Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopListNameHolder {
         return ShopListNameHolder.create(parent)
@@ -18,8 +19,14 @@ class ShopListNamesAdapter :
         holder.itemView.setOnClickListener {
 
         }
-        holder.binding.imBtnDelete.setOnClickListener {
-            onDeleteClickListener?.invoke(item.id)
+        with(holder.binding)
+        {
+            imBtnDelete.setOnClickListener {
+                onDeleteClickListener?.invoke(item.id)
+            }
+            imBtnEdit.setOnClickListener {
+                onEditClickListener?.invoke(item)
+            }
         }
     }
 }

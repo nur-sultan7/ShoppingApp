@@ -82,6 +82,11 @@ class ShopListNamesFragment : BaseFragment() {
                 viewModel.deleteShoppingList(id)
             }
         }
+        adapter.onEditClickListener = { item ->
+            NewListDialog.showDialog(requireContext(), item.name) {
+                viewModel.updateShoppingListName(item.copy(name = it))
+            }
+        }
     }
 
     companion object {

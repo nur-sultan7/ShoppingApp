@@ -23,4 +23,6 @@
     <string name="dialog_delete_title">Delete</string>
     <string name="dialog_delete_alert">Do you want delete this item?</string>
     <string name="dialog_delete_cancel">Cancel</string>
+    <string name="update">Update</string>
+    <string name="change_list_name_title">Change list name</string>
 </resources>

@@ -34,4 +34,7 @@ interface AppDao {
 
     @Query("delete from shopping_list_names where id is :id")
     suspend fun deleteShoppingListName(id: Int)
+
+    @Update
+    suspend fun updateShoppingListName(shoppingListName: ShoppingListNameDbModel)
 }
