@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
-import android.icu.util.Calendar
 import android.os.Bundle
 import android.text.Spannable
 import android.text.style.ForegroundColorSpan
@@ -23,8 +22,6 @@ import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import com.nursultan.shoppingapp.databinding.ActivityNewNoteBinding
 import com.nursultan.shoppingapp.presentation.fragments.NoteFragment
 import com.nursultan.shoppingapp.utils.*
-import java.text.SimpleDateFormat
-import java.util.*
 
 class NewNoteActivity : AppCompatActivity() {
     private val binding by lazy {

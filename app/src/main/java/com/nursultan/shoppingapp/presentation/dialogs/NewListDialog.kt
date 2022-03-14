@@ -5,7 +5,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.databinding.DialogNewListBinding
-import java.lang.StringBuilder
 
 object NewListDialog {
     fun showDialog(
