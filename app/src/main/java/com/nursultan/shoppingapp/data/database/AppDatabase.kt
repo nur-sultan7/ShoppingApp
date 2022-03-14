@@ -6,12 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.nursultan.shoppingapp.data.database.model.LibraryItemDbModel
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
-import com.nursultan.shoppingapp.data.database.model.ShoppingListItemDbModel
-import com.nursultan.shoppingapp.data.database.model.ShoppingListNameDbModel
+import com.nursultan.shoppingapp.data.database.model.ShopListItemDbModel
+import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
 
 @Database(
     entities = [LibraryItemDbModel::class, NoteItemDbModel::class,
-        ShoppingListItemDbModel::class, ShoppingListNameDbModel::class],
+        ShopListItemDbModel::class, ShopListNameItemDbModel::class],
     version = 1,
     exportSchema = false
 )

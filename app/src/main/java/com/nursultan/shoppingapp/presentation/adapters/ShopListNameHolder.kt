@@ -3,15 +3,15 @@ package com.nursultan.shoppingapp.presentation.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.nursultan.shoppingapp.data.database.model.ShoppingListNameDbModel
+import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
 import com.nursultan.shoppingapp.databinding.ItemListNameBinding
 
 class ShopListNameHolder(val binding: ItemListNameBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun setData(shoppingListName: ShoppingListNameDbModel) = with(binding)
+    fun setData(shopListNameItem: ShopListNameItemDbModel) = with(binding)
     {
-        tvListName.text = shoppingListName.name
-        tvTime.text = shoppingListName.time
+        tvListName.text = shopListNameItem.name
+        tvTime.text = shopListNameItem.time
     }
 
     companion object {

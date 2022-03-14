@@ -2,12 +2,13 @@ package com.nursultan.shoppingapp.presentation.adapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.nursultan.shoppingapp.data.database.model.ShoppingListNameDbModel
+import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
 
 class ShopListNamesAdapter :
-    ListAdapter<ShoppingListNameDbModel, ShopListNameHolder>(ShopListNameDiffUtil) {
+    ListAdapter<ShopListNameItemDbModel, ShopListNameHolder>(ShopListNameDiffUtil) {
     var onDeleteClickListener: ((id: Int) -> Unit)? = null
-    var onEditClickListener: ((ShoppingListNameDbModel)->Unit)? = null
+    var onEditClickListener: ((ShopListNameItemDbModel) -> Unit)? = null
+    var onItemClickListener: ((ShopListNameItemDbModel) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopListNameHolder {
         return ShopListNameHolder.create(parent)
@@ -27,6 +28,9 @@ class ShopListNamesAdapter :
             imBtnEdit.setOnClickListener {
                 onEditClickListener?.invoke(item)
             }
+        }
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.invoke(item)
         }
     }
 }

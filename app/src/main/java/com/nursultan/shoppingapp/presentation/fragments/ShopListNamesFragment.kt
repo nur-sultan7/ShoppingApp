@@ -1,18 +1,17 @@
 package com.nursultan.shoppingapp.presentation.fragments
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.ShoppingApp
-import com.nursultan.shoppingapp.data.database.model.ShoppingListNameDbModel
+import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
 import com.nursultan.shoppingapp.databinding.FragmentShopListNamesBinding
 import com.nursultan.shoppingapp.presentation.MainViewModel
+import com.nursultan.shoppingapp.presentation.ShopListActivity
 import com.nursultan.shoppingapp.presentation.ViewModelFactory
 import com.nursultan.shoppingapp.presentation.adapters.ShopListNamesAdapter
 import com.nursultan.shoppingapp.presentation.dialogs.DeleteShopListNameDialog
@@ -34,7 +33,7 @@ class ShopListNamesFragment : BaseFragment() {
     override fun onClickNew() {
         NewListDialog.showDialog(requireContext()) { listName ->
             viewModel.insertShoppingList(
-                ShoppingListNameDbModel(
+                ShopListNameItemDbModel(
                     name = listName,
                     time = TimeManager.getCurrentTime(),
                     itemsId = "",
@@ -86,6 +85,12 @@ class ShopListNamesFragment : BaseFragment() {
             NewListDialog.showDialog(requireContext(), item.name) {
                 viewModel.updateShoppingListName(item.copy(name = it))
             }
+        }
+        adapter.onItemClickListener = {
+            startActivity(Intent(
+                activity, ShopListActivity::class.java).apply {
+                    putExtra(ShopListActivity.SHOP_LIST_NAME, it)
+            })
         }
     }
 

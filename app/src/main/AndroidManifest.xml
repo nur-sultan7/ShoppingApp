@@ -11,10 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShoppingApp">
         <activity
+            android:name=".presentation.ShopListActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.NewNoteActivity"
             android:exported="false"
-            android:windowSoftInputMode="stateVisible|adjustResize"
-            />
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true">

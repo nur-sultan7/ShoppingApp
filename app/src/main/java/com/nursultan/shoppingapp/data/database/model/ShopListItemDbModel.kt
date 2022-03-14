@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "shopping_list_item")
-data class ShoppingListItemDbModel(
+data class ShopListItemDbModel(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
     val name: String,
