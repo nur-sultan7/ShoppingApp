@@ -3,6 +3,7 @@ package com.nursultan.shoppingapp.presentation.adapters
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
+import com.nursultan.shoppingapp.presentation.adapters.utils.ShopListNameDiffUtil
 
 class ShopListNamesAdapter :
     ListAdapter<ShopListNameItemDbModel, ShopListNameHolder>(ShopListNameDiffUtil) {

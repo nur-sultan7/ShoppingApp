@@ -3,6 +3,8 @@ package com.nursultan.shoppingapp.presentation.adapters
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
+import com.nursultan.shoppingapp.presentation.adapters.holders.NoteViewHolder
+import com.nursultan.shoppingapp.presentation.adapters.utils.NoteDiffUtil
 
 class NotesListAdapter : ListAdapter<NoteItemDbModel, NoteViewHolder>(NoteDiffUtil) {
 

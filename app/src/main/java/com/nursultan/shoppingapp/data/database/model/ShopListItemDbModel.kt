@@ -11,5 +11,5 @@ data class ShopListItemDbModel(
     val itemInfo: String?,
     val itemChecked: Int = 0,
     val itemListId: Int,
-    val ItemType: String = "item"
+    val ItemType: Int = 0
 )
