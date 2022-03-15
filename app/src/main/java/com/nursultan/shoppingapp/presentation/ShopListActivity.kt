@@ -1,8 +1,10 @@
 package com.nursultan.shoppingapp.presentation
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.ShoppingApp
 import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
 import com.nursultan.shoppingapp.databinding.ActivityShopListBinding
@@ -20,6 +22,11 @@ class ShopListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         init()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.shop_list_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     private fun init() {
