@@ -16,4 +16,5 @@
     <color name="picker_yellow">#FFEB3B</color>
     <color name="picker_green">#4CAF50</color>
     <color name="picker_purple">#673AB7</color>
+    <color name="grey">#8A8888</color>
 </resources>

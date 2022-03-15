@@ -31,4 +31,6 @@
     <string name="add_item">Add item</string>
     <string name="save_item">Save item</string>
     <string name="new_item_name">Item name</string>
+    <string name="edit_button">Edit button</string>
+    <string name="img_description_delete_button">Delete button</string>
 </resources>
