@@ -8,7 +8,7 @@ data class ShopListItemDbModel(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
     val name: String,
-    val itemInfo: String?,
+    val itemInfo: String? = null,
     val itemChecked: Int = 0,
     val itemListId: Int,
     val ItemType: Int = 0

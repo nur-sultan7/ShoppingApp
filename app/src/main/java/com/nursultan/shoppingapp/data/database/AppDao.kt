@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
+import com.nursultan.shoppingapp.data.database.model.ShopListItemDbModel
 import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
 import kotlinx.coroutines.flow.Flow
 
@@ -37,4 +38,8 @@ interface AppDao {
 
     @Update
     suspend fun updateShoppingListName(shopListNameItem: ShopListNameItemDbModel)
+
+    //ShopListItem queries
+    @Insert
+    suspend fun insertShopListItem(shopListItemDbModel: ShopListItemDbModel)
 }

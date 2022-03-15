@@ -5,6 +5,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.nursultan.shoppingapp.data.database.AppDatabase
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
+import com.nursultan.shoppingapp.data.database.model.ShopListItemDbModel
 import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
 import kotlinx.coroutines.launch
 
@@ -34,5 +35,9 @@ class MainViewModel(db: AppDatabase) : ViewModel() {
 
     fun updateShoppingListName(slNameItem: ShopListNameItemDbModel) = viewModelScope.launch {
         dao.updateShoppingListName(slNameItem)
+    }
+
+    fun insertShopListItem(shopListItemDbModel: ShopListItemDbModel) = viewModelScope.launch {
+        dao.insertShopListItem(shopListItemDbModel)
     }
 }
