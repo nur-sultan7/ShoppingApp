@@ -13,7 +13,7 @@
         android:title="@string/share_list" />
     <item
         android:id="@+id/add_item"
-        android:actionLayout="@layout/action_add_item"
+        app:actionLayout="@layout/action_add_item"
         android:icon="@drawable/ic_add_item"
         android:orderInCategory="1"
         android:title="@string/add_item"

@@ -2,12 +2,14 @@ package com.nursultan.shoppingapp.presentation
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.ShoppingApp
 import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
 import com.nursultan.shoppingapp.databinding.ActivityShopListBinding
+import com.nursultan.shoppingapp.utils.ShopListActionView
 
 class ShopListActivity : AppCompatActivity() {
     val binding by lazy {
@@ -26,6 +28,12 @@ class ShopListActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.shop_list_menu, menu)
+        menu?.let {
+            val saveItem = menu.findItem(R.id.save_item)
+            saveItem.isVisible=false
+            val addItem = menu.findItem(R.id.add_item)
+            addItem.setOnActionExpandListener(ShopListActionView(this, saveItem))
+        }
         return super.onCreateOptionsMenu(menu)
     }
 
