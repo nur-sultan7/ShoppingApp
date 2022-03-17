@@ -30,7 +30,7 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:visibility="visible"
-                app:layout_constraintEnd_toStartOf="@+id/imBtnEdit"
+                app:layout_constraintEnd_toStartOf="@+id/imBtnEditShopItem"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -48,7 +48,7 @@
                 tools:text="Info" />
 
             <CheckBox
-                android:id="@+id/chBox"
+                android:id="@+id/shopItemCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
@@ -57,7 +57,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/imBtnEdit"
+                android:id="@+id/shopItemEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -65,9 +65,9 @@
                 android:contentDescription="@string/edit_button"
                 android:minWidth="48dp"
                 android:minHeight="48dp"
-                app:layout_constraintBottom_toBottomOf="@+id/chBox"
-                app:layout_constraintEnd_toStartOf="@+id/chBox"
-                app:layout_constraintTop_toTopOf="@+id/chBox"
+                app:layout_constraintBottom_toBottomOf="@+id/shopItemCheck"
+                app:layout_constraintEnd_toStartOf="@+id/shopItemCheck"
+                app:layout_constraintTop_toTopOf="@+id/shopItemCheck"
                 app:srcCompat="@drawable/ic_edit_shop_list_item"
                 tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck,RedundantDescriptionCheck" />
 

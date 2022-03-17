@@ -12,10 +12,10 @@ class ShopListItemAdapter : ListAdapter<ShopListItemDbModel, ShopItemHolder>(Sho
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopItemHolder {
         return when (viewType) {
             LIBRARY_ITEM -> {
-                ShopItemHolder.create(parent, R.layout.item_list_name)
+                ShopItemHolder.create(parent, R.layout.item_shop_list)
             }
             SHOP_ITEM -> {
-                ShopItemHolder.create(parent, R.layout.item_list_name)
+                ShopItemHolder.create(parent, R.layout.item_shop_list)
             }
             else -> {
                 throw IllegalArgumentException("Unknown viewType: $viewType")

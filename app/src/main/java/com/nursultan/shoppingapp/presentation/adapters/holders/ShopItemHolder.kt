@@ -11,7 +11,6 @@ import com.nursultan.shoppingapp.databinding.ItemShopListBinding
 import com.nursultan.shoppingapp.utils.VisibilitySetter
 
 class ShopItemHolder(val view: View) : RecyclerView.ViewHolder(view) {
-    private var binding: ViewBinding? = null
     fun showShopItem(item: ShopListItemDbModel) {
         val binding = ItemShopListBinding.bind(view)
         binding.apply {
@@ -22,7 +21,7 @@ class ShopItemHolder(val view: View) : RecyclerView.ViewHolder(view) {
     }
 
     fun showLibraryItem(item: ShopListItemDbModel) {
-        binding = ItemLibraryShopListBinding.bind(view)
+        val binding = ItemLibraryShopListBinding.bind(view)
     }
 
 

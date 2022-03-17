@@ -26,7 +26,7 @@ class ShopListNamesAdapter :
             imBtnDelete.setOnClickListener {
                 onDeleteClickListener?.invoke(item.id)
             }
-            imBtnEdit.setOnClickListener {
+            imBtnEditShopItem.setOnClickListener {
                 onEditClickListener?.invoke(item)
             }
         }
