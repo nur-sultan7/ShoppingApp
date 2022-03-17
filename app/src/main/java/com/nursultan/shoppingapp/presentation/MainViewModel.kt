@@ -1,5 +1,6 @@
 package com.nursultan.shoppingapp.presentation
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
@@ -39,5 +40,9 @@ class MainViewModel(db: AppDatabase) : ViewModel() {
 
     fun insertShopListItem(shopListItemDbModel: ShopListItemDbModel) = viewModelScope.launch {
         dao.insertShopListItem(shopListItemDbModel)
+    }
+
+    fun getAllShoppingListItems(shopListId: Int): LiveData<List<ShopListItemDbModel>> {
+        return dao.getAllShopListItems(shopListId)
     }
 }

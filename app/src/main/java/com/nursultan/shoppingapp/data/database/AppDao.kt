@@ -42,4 +42,7 @@ interface AppDao {
     //ShopListItem queries
     @Insert
     suspend fun insertShopListItem(shopListItemDbModel: ShopListItemDbModel)
+
+    @Query("select * from shopping_list_items where listId is :listId")
+    fun getAllShopListItems(listId: Int): LiveData<List<ShopListItemDbModel>>
 }

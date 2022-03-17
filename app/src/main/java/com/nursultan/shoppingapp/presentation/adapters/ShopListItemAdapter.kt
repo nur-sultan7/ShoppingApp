@@ -25,7 +25,7 @@ class ShopListItemAdapter : ListAdapter<ShopListItemDbModel, ShopItemHolder>(Sho
 
     override fun onBindViewHolder(holder: ShopItemHolder, position: Int) {
         val item = getItem(position)
-        if (item.ItemType == LIBRARY_ITEM) {
+        if (item.type == LIBRARY_ITEM) {
             holder.showShopItem(item)
         } else {
             holder.showLibraryItem(item)
@@ -33,7 +33,7 @@ class ShopListItemAdapter : ListAdapter<ShopListItemDbModel, ShopItemHolder>(Sho
     }
 
     override fun getItemViewType(position: Int): Int {
-        return getItem(position).ItemType
+        return getItem(position).type
     }
 
     companion object {

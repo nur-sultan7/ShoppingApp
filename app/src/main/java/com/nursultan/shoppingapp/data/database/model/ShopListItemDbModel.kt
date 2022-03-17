@@ -3,13 +3,13 @@ package com.nursultan.shoppingapp.data.database.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "shopping_list_item")
+@Entity(tableName = "shopping_list_items")
 data class ShopListItemDbModel(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
     val name: String,
-    val itemInfo: String? = null,
-    val itemChecked: Int = 0,
-    val itemListId: Int,
-    val ItemType: Int = 0
+    val info: String? = null,
+    val checked: Int = 0,
+    val listId: Int,
+    val type: Int = 0
 )

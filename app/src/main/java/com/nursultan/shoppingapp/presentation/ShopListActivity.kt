@@ -6,13 +6,15 @@ import android.view.MenuItem
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.ShoppingApp
 import com.nursultan.shoppingapp.data.database.model.ShopListItemDbModel
 import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
 import com.nursultan.shoppingapp.databinding.ActivityShopListBinding
+import com.nursultan.shoppingapp.presentation.adapters.ShopListItemAdapter
+import com.nursultan.shoppingapp.utils.VisibilitySetter
 import com.nursultan.shoppingapp.utils.ShopListActionView
-import java.lang.IllegalArgumentException
 
 class ShopListActivity : AppCompatActivity() {
     val binding by lazy {
@@ -22,12 +24,15 @@ class ShopListActivity : AppCompatActivity() {
         ViewModelFactory((application as ShoppingApp).appDatabase)
     }
     var shopListNameItem: ShopListNameItemDbModel? = null
-    lateinit var edItemName: EditText
+    private lateinit var edItemName: EditText
+    private lateinit var adapter: ShopListItemAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         init()
+        initViews()
+        setObservers()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -54,15 +59,30 @@ class ShopListActivity : AppCompatActivity() {
             viewModel.insertShopListItem(
                 ShopListItemDbModel(
                     name = edItemName.text.toString(),
-                    itemListId = shopListNameItem?.id ?: return
+                    listId = shopListNameItem?.id ?: return
                 )
             )
+            edItemName.text = null
         }
     }
 
     private fun init() {
         shopListNameItem = intent.getSerializableExtra(SHOP_LIST_NAME) as ShopListNameItemDbModel
-        binding.textView.text = shopListNameItem?.name
+    }
+
+    private fun initViews() = with(binding) {
+        rcViewShopListItems.layoutManager = LinearLayoutManager(this@ShopListActivity)
+        adapter = ShopListItemAdapter()
+        rcViewShopListItems.adapter = adapter
+    }
+
+    private fun setObservers() {
+        shopListNameItem?.let {
+            viewModel.getAllShoppingListItems(it.id).observe(this) { list ->
+                adapter.submitList(list)
+                binding.tvEmptyList.visibility = VisibilitySetter.setVisibilityByList(list)
+            }
+        }
     }
 
     companion object {
