@@ -9,7 +9,7 @@ data class ShopListItemDbModel(
     var id: Int = 0,
     val name: String,
     val info: String? = null,
-    val checked: Int = 0,
+    val checked: Boolean = false,
     val listId: Int,
     val type: Int = 0
 )

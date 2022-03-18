@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import androidx.viewbinding.ViewBindings
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.data.database.model.ShopListItemDbModel
 import com.nursultan.shoppingapp.databinding.ItemLibraryShopListBinding
@@ -13,20 +14,21 @@ import com.nursultan.shoppingapp.databinding.ItemShopListBinding
 import com.nursultan.shoppingapp.utils.VisibilitySetter
 
 class ShopItemHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    var binding: ViewBinding?=null
     fun showShopItem(item: ShopListItemDbModel) {
         val binding = ItemShopListBinding.bind(view)
         binding.apply {
             tvName.text = item.name
             tvInfo.text = item.info
+            checkBox.isChecked = item.checked
             tvInfo.visibility = VisibilitySetter.setVisibilityByString(item.info)
-            checkBox.setOnClickListener {
-                setPaintFlagAndColor(binding)
-            }
+            setPaintFlagAndColor(binding)
         }
+        this.binding = binding
     }
 
     fun showLibraryItem(item: ShopListItemDbModel) {
-        val binding = ItemLibraryShopListBinding.bind(view)
+       // val binding = ItemLibraryShopListBinding.bind(view)
     }
 
     private fun setPaintFlagAndColor(binding: ItemShopListBinding) {

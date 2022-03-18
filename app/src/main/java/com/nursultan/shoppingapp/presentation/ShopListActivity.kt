@@ -33,6 +33,7 @@ class ShopListActivity : AppCompatActivity() {
         init()
         initViews()
         setObservers()
+        setOnClickListeners()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -82,6 +83,12 @@ class ShopListActivity : AppCompatActivity() {
                 adapter.submitList(list)
                 binding.tvEmptyList.visibility = VisibilitySetter.setVisibilityByList(list)
             }
+        }
+    }
+    private fun setOnClickListeners()
+    {
+        adapter.onCheckClickListener={
+            viewModel.updateShopListItem(it)
         }
     }
 

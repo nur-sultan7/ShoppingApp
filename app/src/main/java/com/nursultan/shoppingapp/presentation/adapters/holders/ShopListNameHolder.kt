@@ -1,4 +1,4 @@
-package com.nursultan.shoppingapp.presentation.adapters
+package com.nursultan.shoppingapp.presentation.adapters.holders
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

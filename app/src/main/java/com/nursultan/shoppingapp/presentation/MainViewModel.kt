@@ -45,4 +45,7 @@ class MainViewModel(db: AppDatabase) : ViewModel() {
     fun getAllShoppingListItems(shopListId: Int): LiveData<List<ShopListItemDbModel>> {
         return dao.getAllShopListItems(shopListId)
     }
+    fun updateShopListItem(item: ShopListItemDbModel) = viewModelScope.launch {
+        dao.updateShopListItem(item)
+    }
 }

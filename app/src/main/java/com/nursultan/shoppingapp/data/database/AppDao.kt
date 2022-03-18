@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface AppDao {
-    //Queries with note
+    //note queries
     @Insert
     suspend fun insertNote(note: NoteItemDbModel)
 
@@ -26,7 +26,7 @@ interface AppDao {
     @Update
     suspend fun updateNote(note: NoteItemDbModel)
 
-    //Queries with shopping list name
+    //shopping list name Queries
     @Insert
     suspend fun insertShoppingListName(listNameItem: ShopListNameItemDbModel)
 
@@ -45,4 +45,7 @@ interface AppDao {
 
     @Query("select * from shopping_list_items where listId is :listId")
     fun getAllShopListItems(listId: Int): LiveData<List<ShopListItemDbModel>>
+
+    @Update
+    suspend fun updateShopListItem(item: ShopListItemDbModel)
 }
