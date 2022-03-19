@@ -16,8 +16,8 @@ class OnNoteTouchListener : View.OnTouchListener {
                 yDelta = event.rawY - v.y
             }
             MotionEvent.ACTION_MOVE -> {
-                v.x =event.rawX - xDelta
-                v.y =event.rawY - yDelta
+                v.x = event.rawX - xDelta
+                v.y = event.rawY - yDelta
             }
         }
         return true
