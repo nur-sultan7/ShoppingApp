@@ -18,7 +18,7 @@ object NewListDialog {
         builder.setView(binding.root)
         binding.apply {
             if (currentListName != null) {
-                btnCreateNewList.text = context.getText(R.string.update)
+                btnCreateNewList.text = context.getText(R.string.edit_shop_list_item_update)
                 tvTitle.text = context.getText(R.string.change_list_name_title)
                 edNewListName.setText(currentListName)
             }

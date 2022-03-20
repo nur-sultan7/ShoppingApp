@@ -23,7 +23,7 @@
     <string name="dialog_delete_title">Delete</string>
     <string name="dialog_delete_alert">Do you want delete this item?</string>
     <string name="dialog_delete_cancel">Cancel</string>
-    <string name="update">Update</string>
+    <string name="edit_shop_list_item_update">Update</string>
     <string name="change_list_name_title">Change list name</string>
     <string name="delete_list">Delete list</string>
     <string name="clear_list">Clear list</string>
@@ -34,4 +34,7 @@
     <string name="edit_button">Edit button</string>
     <string name="img_description_delete_button">Delete button</string>
     <string name="list_is_empty_title">List is empty</string>
+    <string name="edit_item_title">Edit item</string>
+    <string name="edit_shop_list_item_info">Item info</string>
+    <string name="edit_shop_item_name_title">Name</string>
 </resources>

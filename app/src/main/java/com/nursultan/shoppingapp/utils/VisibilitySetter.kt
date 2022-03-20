@@ -6,9 +6,9 @@ import com.nursultan.shoppingapp.data.database.model.ShopListItemDbModel
 object VisibilitySetter {
     fun setVisibilityByString(text: String?): Int {
         return if (text.isNullOrEmpty())
-            View.VISIBLE
-        else
             View.GONE
+        else
+            View.VISIBLE
     }
 
     fun setVisibilityByList(list: List<ShopListItemDbModel>): Int {

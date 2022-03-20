@@ -13,6 +13,7 @@ import com.nursultan.shoppingapp.data.database.model.ShopListItemDbModel
 import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
 import com.nursultan.shoppingapp.databinding.ActivityShopListBinding
 import com.nursultan.shoppingapp.presentation.adapters.ShopListItemAdapter
+import com.nursultan.shoppingapp.presentation.dialogs.EditListItemDialog
 import com.nursultan.shoppingapp.utils.VisibilitySetter
 import com.nursultan.shoppingapp.utils.ShopListActionView
 
@@ -85,10 +86,15 @@ class ShopListActivity : AppCompatActivity() {
             }
         }
     }
-    private fun setOnClickListeners()
-    {
-        adapter.onCheckClickListener={
+
+    private fun setOnClickListeners() {
+        adapter.onCheckClickListener = {
             viewModel.updateShopListItem(it)
+        }
+        adapter.onEditClickListener = {
+            EditListItemDialog.showDialog(this, it) { item ->
+                viewModel.updateShopListItem(item)
+            }
         }
     }
 

@@ -11,6 +11,7 @@ import java.lang.IllegalArgumentException
 
 class ShopListItemAdapter : ListAdapter<ShopListItemDbModel, ShopItemHolder>(ShopItemDiffUtil) {
     var onCheckClickListener: ((ShopListItemDbModel) -> Unit)? = null
+    var onEditClickListener: ((ShopListItemDbModel) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopItemHolder {
         return when (viewType) {
             LIBRARY_ITEM -> {
@@ -33,6 +34,9 @@ class ShopListItemAdapter : ListAdapter<ShopListItemDbModel, ShopItemHolder>(Sho
             {
                 checkBox.setOnClickListener {
                     onCheckClickListener?.invoke(item.copy(checked = checkBox.isChecked))
+                }
+                imBtnEdit.setOnClickListener {
+                    onEditClickListener?.invoke(item)
                 }
             }
         } else {
