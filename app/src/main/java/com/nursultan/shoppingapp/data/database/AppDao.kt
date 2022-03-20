@@ -2,6 +2,7 @@ package com.nursultan.shoppingapp.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.nursultan.shoppingapp.data.database.model.LibraryItemDbModel
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import com.nursultan.shoppingapp.data.database.model.ShopListItemDbModel
 import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
@@ -48,4 +49,11 @@ interface AppDao {
 
     @Query("delete from shopping_list_items where listId is :listId")
     suspend fun deleteShopListItems(listId: Int)
+
+    //LibraryItem queries
+    @Insert
+    suspend fun insertLibraryItem(libraryItemDbModel: LibraryItemDbModel)
+
+    @Query("select exists (select * from library where name like :itemName)")
+    suspend fun isExistLibraryItem(itemName: String): Boolean
 }

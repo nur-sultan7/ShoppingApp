@@ -2,6 +2,7 @@ package com.nursultan.shoppingapp.presentation
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
@@ -15,6 +16,7 @@ import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
 import com.nursultan.shoppingapp.databinding.ActivityShopListBinding
 import com.nursultan.shoppingapp.presentation.adapters.ShopListItemAdapter
 import com.nursultan.shoppingapp.presentation.dialogs.EditListItemDialog
+import com.nursultan.shoppingapp.utils.OnTextChangeWatcher
 import com.nursultan.shoppingapp.utils.ShareHelper
 import com.nursultan.shoppingapp.utils.VisibilitySetter
 import com.nursultan.shoppingapp.utils.ShopListActionView
@@ -45,10 +47,34 @@ class ShopListActivity : AppCompatActivity() {
             val saveItem = menu.findItem(R.id.save_item)
             saveItem.isVisible = false
             val addItem = menu.findItem(R.id.add_item)
-            addItem.setOnActionExpandListener(ShopListActionView(this, saveItem))
             edItemName = addItem.actionView.findViewById(R.id.edShopListItem)
+            addItem.setOnActionExpandListener(expandActionView(saveItem, textWatcher()))
+
         }
         return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun expandActionView(saveItem: MenuItem, textWatcher: TextWatcher) =
+        object : MenuItem.OnActionExpandListener {
+            override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                saveItem.isVisible = true
+                edItemName.addTextChangedListener(textWatcher)
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                saveItem.isVisible = false
+                edItemName.removeTextChangedListener(textWatcher)
+                invalidateOptionsMenu()
+                return true
+            }
+
+        }
+
+    private fun textWatcher() = object : OnTextChangeWatcher() {
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
