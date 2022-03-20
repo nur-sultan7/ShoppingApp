@@ -63,4 +63,12 @@ class MainViewModel(db: AppDatabase) : ViewModel() {
     fun getLibraryItems(name: String) = viewModelScope.launch {
         libraryItems.postValue(dao.getLibraryItems(name))
     }
+
+    fun updateLibraryItem(item: ShopListItemDbModel) = viewModelScope.launch {
+        dao.updateLibraryItem(LibraryItemDbModel(id = item.id, name = item.name))
+    }
+
+    fun deleteLibraryItem(id: Int) = viewModelScope.launch {
+        dao.deleteLibraryItem(id)
+    }
 }

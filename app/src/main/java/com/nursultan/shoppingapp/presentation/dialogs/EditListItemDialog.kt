@@ -2,6 +2,7 @@ package com.nursultan.shoppingapp.presentation.dialogs
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import com.nursultan.shoppingapp.data.database.model.ShopListItemDbModel
 import com.nursultan.shoppingapp.databinding.DialogEditListItemBinding
@@ -20,6 +21,10 @@ object EditListItemDialog {
         {
             edListItemName.setText(shopListItem.name)
             edListItemInfo.setText(shopListItem.info)
+            if (shopListItem.type==1)
+            {
+                edListItemInfo.visibility = View.GONE
+            }
             btnUpdate.setOnClickListener {
                 onEditListener.invoke(
                     shopListItem.copy(

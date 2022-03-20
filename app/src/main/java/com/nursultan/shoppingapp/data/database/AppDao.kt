@@ -59,4 +59,10 @@ interface AppDao {
 
     @Query("select * from library where name like :name")
     suspend fun getLibraryItems(name: String): List<LibraryItemDbModel>
+
+    @Update
+    suspend fun updateLibraryItem(item: LibraryItemDbModel)
+
+    @Query("delete from library where id is :id")
+    suspend fun deleteLibraryItem(id: Int)
 }

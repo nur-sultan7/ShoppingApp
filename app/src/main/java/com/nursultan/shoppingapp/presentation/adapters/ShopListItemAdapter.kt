@@ -13,6 +13,8 @@ import java.lang.IllegalArgumentException
 class ShopListItemAdapter : ListAdapter<ShopListItemDbModel, ShopItemHolder>(ShopItemDiffUtil) {
     var onCheckClickListener: ((ShopListItemDbModel) -> Unit)? = null
     var onEditClickListener: ((ShopListItemDbModel) -> Unit)? = null
+    var onLibraryEditClickListener: ((ShopListItemDbModel) -> Unit)? = null
+    var onLibraryDeleteClickListener: ((Int) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopItemHolder {
         return when (viewType) {
             LIBRARY_ITEM -> {
@@ -44,7 +46,12 @@ class ShopListItemAdapter : ListAdapter<ShopListItemDbModel, ShopItemHolder>(Sho
             holder.showLibraryItem(item)
             with(holder.binding as ItemLibraryShopListBinding)
             {
-
+                imBtnEditShopItem.setOnClickListener {
+                    onLibraryEditClickListener?.invoke(item)
+                }
+                imBtnDelete.setOnClickListener {
+                    onLibraryDeleteClickListener?.invoke(item.id)
+                }
             }
         }
     }

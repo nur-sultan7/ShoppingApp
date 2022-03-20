@@ -67,7 +67,7 @@ class ShopListActivity : AppCompatActivity() {
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
                 saveItem.isVisible = false
                 edItemName.removeTextChangedListener(textWatcher)
-                edItemName.text=null
+                edItemName.text = null
                 invalidateOptionsMenu()
                 removeLibraryObserver()
                 setShopListItemsObservers()
@@ -144,6 +144,7 @@ class ShopListActivity : AppCompatActivity() {
             for (item in it) {
                 libraryList.add(
                     ShopListItemDbModel(
+                        id = item.id,
                         name = item.name,
                         type = ShopListItemAdapter.LIBRARY_ITEM,
                         listId = 0
@@ -166,6 +167,14 @@ class ShopListActivity : AppCompatActivity() {
             EditListItemDialog.showDialog(this, it) { item ->
                 viewModel.updateShopListItem(item)
             }
+        }
+        adapter.onLibraryEditClickListener = {
+            EditListItemDialog.showDialog(this, it) { item ->
+                viewModel.updateLibraryItem(item)
+            }
+        }
+        adapter.onLibraryDeleteClickListener = {
+            viewModel.deleteLibraryItem(it)
         }
     }
 
