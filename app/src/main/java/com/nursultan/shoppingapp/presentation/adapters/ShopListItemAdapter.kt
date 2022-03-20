@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.data.database.model.ShopListItemDbModel
+import com.nursultan.shoppingapp.databinding.ItemLibraryShopListBinding
 import com.nursultan.shoppingapp.databinding.ItemShopListBinding
 import com.nursultan.shoppingapp.presentation.adapters.holders.ShopItemHolder
 import com.nursultan.shoppingapp.presentation.adapters.utils.ShopItemDiffUtil
@@ -15,7 +16,7 @@ class ShopListItemAdapter : ListAdapter<ShopListItemDbModel, ShopItemHolder>(Sho
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopItemHolder {
         return when (viewType) {
             LIBRARY_ITEM -> {
-                ShopItemHolder.create(parent, R.layout.item_shop_list)
+                ShopItemHolder.create(parent, R.layout.item_library_shop_list)
             }
             SHOP_ITEM -> {
                 ShopItemHolder.create(parent, R.layout.item_shop_list)
@@ -41,6 +42,10 @@ class ShopListItemAdapter : ListAdapter<ShopListItemDbModel, ShopItemHolder>(Sho
             }
         } else {
             holder.showLibraryItem(item)
+            with(holder.binding as ItemLibraryShopListBinding)
+            {
+
+            }
         }
     }
 

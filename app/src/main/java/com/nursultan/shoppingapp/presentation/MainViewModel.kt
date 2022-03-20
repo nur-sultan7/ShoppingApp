@@ -1,9 +1,6 @@
 package com.nursultan.shoppingapp.presentation
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.nursultan.shoppingapp.data.database.AppDatabase
 import com.nursultan.shoppingapp.data.database.model.LibraryItemDbModel
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
@@ -13,6 +10,7 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(db: AppDatabase) : ViewModel() {
     private val dao = db.getDao()
+    val libraryItems = MutableLiveData<List<LibraryItemDbModel>>()
     val allNotes = dao.getAllNotes().asLiveData()
     val allShoppingListNames = dao.getAllShoppingListNames()
     fun insertNote(note: NoteItemDbModel) = viewModelScope.launch {
@@ -60,5 +58,9 @@ class MainViewModel(db: AppDatabase) : ViewModel() {
 
     private suspend fun libraryItemIsExist(itemName: String): Boolean {
         return dao.isExistLibraryItem(itemName)
+    }
+
+    fun getLibraryItems(name: String) = viewModelScope.launch {
+        libraryItems.postValue(dao.getLibraryItems(name))
     }
 }

@@ -56,4 +56,7 @@ interface AppDao {
 
     @Query("select exists (select * from library where name like :itemName)")
     suspend fun isExistLibraryItem(itemName: String): Boolean
+
+    @Query("select * from library where name like :name")
+    suspend fun getLibraryItems(name: String): List<LibraryItemDbModel>
 }

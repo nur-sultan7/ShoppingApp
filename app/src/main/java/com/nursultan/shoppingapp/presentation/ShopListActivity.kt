@@ -19,7 +19,6 @@ import com.nursultan.shoppingapp.presentation.dialogs.EditListItemDialog
 import com.nursultan.shoppingapp.utils.OnTextChangeWatcher
 import com.nursultan.shoppingapp.utils.ShareHelper
 import com.nursultan.shoppingapp.utils.VisibilitySetter
-import com.nursultan.shoppingapp.utils.ShopListActionView
 
 class ShopListActivity : AppCompatActivity() {
     val binding by lazy {
@@ -37,8 +36,9 @@ class ShopListActivity : AppCompatActivity() {
         setContentView(binding.root)
         init()
         initViews()
-        setObservers()
+        setShopListItemsObservers()
         setOnClickListeners()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -59,13 +59,18 @@ class ShopListActivity : AppCompatActivity() {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
                 saveItem.isVisible = true
                 edItemName.addTextChangedListener(textWatcher)
+                setLibraryObserver()
+                viewModel.getLibraryItems("%%")
                 return true
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
                 saveItem.isVisible = false
                 edItemName.removeTextChangedListener(textWatcher)
+                edItemName.text=null
                 invalidateOptionsMenu()
+                removeLibraryObserver()
+                setShopListItemsObservers()
                 return true
             }
 
@@ -73,7 +78,7 @@ class ShopListActivity : AppCompatActivity() {
 
     private fun textWatcher() = object : OnTextChangeWatcher() {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
+            viewModel.getLibraryItems("%$s%")
         }
     }
 
@@ -125,11 +130,32 @@ class ShopListActivity : AppCompatActivity() {
         rcViewShopListItems.adapter = adapter
     }
 
-    private fun setObservers() {
+    private fun setShopListItemsObservers() {
         viewModel.getAllShoppingListItems(shopListNameItem.id).observe(this) { list ->
             adapter.submitList(list)
             binding.tvEmptyList.visibility = VisibilitySetter.setVisibilityByList(list)
         }
+    }
+
+    private fun setLibraryObserver() {
+        viewModel.libraryItems.observe(this)
+        {
+            val libraryList = mutableListOf<ShopListItemDbModel>()
+            for (item in it) {
+                libraryList.add(
+                    ShopListItemDbModel(
+                        name = item.name,
+                        type = ShopListItemAdapter.LIBRARY_ITEM,
+                        listId = 0
+                    )
+                )
+            }
+            adapter.submitList(libraryList)
+        }
+    }
+
+    private fun removeLibraryObserver() {
+        viewModel.libraryItems.removeObservers(this)
     }
 
     private fun setOnClickListeners() {

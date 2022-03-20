@@ -14,7 +14,7 @@ import com.nursultan.shoppingapp.databinding.ItemShopListBinding
 import com.nursultan.shoppingapp.utils.VisibilitySetter
 
 class ShopItemHolder(val view: View) : RecyclerView.ViewHolder(view) {
-    var binding: ViewBinding?=null
+    var binding: ViewBinding? = null
     fun showShopItem(item: ShopListItemDbModel) {
         val binding = ItemShopListBinding.bind(view)
         binding.apply {
@@ -28,7 +28,11 @@ class ShopItemHolder(val view: View) : RecyclerView.ViewHolder(view) {
     }
 
     fun showLibraryItem(item: ShopListItemDbModel) {
-       // val binding = ItemLibraryShopListBinding.bind(view)
+        val binding = ItemLibraryShopListBinding.bind(view)
+        binding.apply {
+            tvName.text = item.name
+        }
+        this.binding = binding
     }
 
     private fun setPaintFlagAndColor(binding: ItemShopListBinding) {
