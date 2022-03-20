@@ -17,7 +17,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="3dp">
+            android:paddingStart="5dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp">
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -57,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/edit_shop_list_item_update"
-                android:textColor="#000000"
+                android:textColor="@color/white"
                 tools:ignore="TextContrastCheck,TextContrastCheck" />
 
         </LinearLayout>

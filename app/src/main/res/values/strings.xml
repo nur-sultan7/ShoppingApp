@@ -37,4 +37,5 @@
     <string name="edit_item_title">Edit item</string>
     <string name="edit_shop_list_item_info">Item info</string>
     <string name="edit_shop_item_name_title">Name</string>
+    <string name="share_list_chooser_title">Send by</string>
 </resources>

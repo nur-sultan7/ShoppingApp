@@ -1,5 +1,6 @@
 package com.nursultan.shoppingapp.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -14,6 +15,7 @@ import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
 import com.nursultan.shoppingapp.databinding.ActivityShopListBinding
 import com.nursultan.shoppingapp.presentation.adapters.ShopListItemAdapter
 import com.nursultan.shoppingapp.presentation.dialogs.EditListItemDialog
+import com.nursultan.shoppingapp.utils.ShareHelper
 import com.nursultan.shoppingapp.utils.VisibilitySetter
 import com.nursultan.shoppingapp.utils.ShopListActionView
 
@@ -60,6 +62,16 @@ class ShopListActivity : AppCompatActivity() {
             }
             R.id.clear_list -> {
                 viewModel.deleteShopListItems(shopListNameItem.id)
+            }
+            R.id.share_list -> {
+                startActivity(
+                    Intent.createChooser(
+                        ShareHelper.shareShopList(
+                            adapter.currentList,
+                            shopListNameItem.name
+                        ), getString(R.string.share_list_chooser_title)
+                    )
+                )
             }
         }
         return super.onOptionsItemSelected(item)
