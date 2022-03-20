@@ -1,10 +1,7 @@
 package com.nursultan.shoppingapp.data.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import com.nursultan.shoppingapp.data.database.model.ShopListItemDbModel
 import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
@@ -48,4 +45,7 @@ interface AppDao {
 
     @Update
     suspend fun updateShopListItem(item: ShopListItemDbModel)
+
+    @Query("delete from shopping_list_items where listId is :listId")
+    suspend fun deleteShopListItems(listId: Int)
 }

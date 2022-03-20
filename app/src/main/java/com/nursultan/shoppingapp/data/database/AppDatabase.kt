@@ -12,7 +12,7 @@ import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
 @Database(
     entities = [LibraryItemDbModel::class, NoteItemDbModel::class,
         ShopListItemDbModel::class, ShopListNameItemDbModel::class],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

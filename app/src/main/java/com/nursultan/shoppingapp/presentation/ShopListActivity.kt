@@ -24,7 +24,7 @@ class ShopListActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels {
         ViewModelFactory((application as ShoppingApp).appDatabase)
     }
-    var shopListNameItem: ShopListNameItemDbModel? = null
+    private lateinit var shopListNameItem: ShopListNameItemDbModel
     private lateinit var edItemName: EditText
     private lateinit var adapter: ShopListItemAdapter
 
@@ -50,8 +50,17 @@ class ShopListActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.save_item) {
-            setOnMenuSaveItemListener()
+        when (item.itemId) {
+            R.id.save_item -> {
+                setOnMenuSaveItemListener()
+            }
+            R.id.delete_list -> {
+                viewModel.deleteShoppingList(shopListNameItem.id)
+                finish()
+            }
+            R.id.clear_list -> {
+                viewModel.deleteShopListItems(shopListNameItem.id)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -61,7 +70,7 @@ class ShopListActivity : AppCompatActivity() {
             viewModel.insertShopListItem(
                 ShopListItemDbModel(
                     name = edItemName.text.toString(),
-                    listId = shopListNameItem?.id ?: return
+                    listId = shopListNameItem.id
                 )
             )
             edItemName.text = null
@@ -79,11 +88,9 @@ class ShopListActivity : AppCompatActivity() {
     }
 
     private fun setObservers() {
-        shopListNameItem?.let {
-            viewModel.getAllShoppingListItems(it.id).observe(this) { list ->
-                adapter.submitList(list)
-                binding.tvEmptyList.visibility = VisibilitySetter.setVisibilityByList(list)
-            }
+        viewModel.getAllShoppingListItems(shopListNameItem.id).observe(this) { list ->
+            adapter.submitList(list)
+            binding.tvEmptyList.visibility = VisibilitySetter.setVisibilityByList(list)
         }
     }
 
