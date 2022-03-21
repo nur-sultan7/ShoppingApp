@@ -152,6 +152,7 @@ class ShopListActivity : AppCompatActivity() {
                 )
             }
             adapter.submitList(libraryList)
+            binding.tvEmptyList.visibility = VisibilitySetter.setVisibilityByList(libraryList)
         }
     }
 

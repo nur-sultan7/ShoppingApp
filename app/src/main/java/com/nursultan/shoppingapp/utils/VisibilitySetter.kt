@@ -11,7 +11,7 @@ object VisibilitySetter {
             View.VISIBLE
     }
 
-    fun setVisibilityByList(list: List<ShopListItemDbModel>): Int {
+    fun <T> setVisibilityByList(list: List<T>): Int {
         return if (list.isNullOrEmpty())
             View.VISIBLE
         else

@@ -51,7 +51,6 @@ class ShopItemHolder(val view: View) : RecyclerView.ViewHolder(view) {
         }
     }
 
-
     companion object {
         fun create(parent: ViewGroup, layoutId: Int): ShopItemHolder {
             return ShopItemHolder(
