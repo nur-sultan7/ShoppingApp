@@ -110,15 +110,15 @@ class ShopListActivity : AppCompatActivity() {
 
     private fun setOnMenuSaveItemListener() {
         if (edItemName.text.toString().isNotEmpty()) {
-            viewModel.insertShopListItem(
-                ShopListItemDbModel(
-                    name = edItemName.text.toString(),
-                    listId = shopListNameItem.id
-                )
-            )
+            viewModel.insertShopListItem(createShopListItem(edItemName.text.toString()))
             edItemName.text = null
         }
     }
+
+    private fun createShopListItem(name: String) = ShopListItemDbModel(
+        name = name,
+        listId = shopListNameItem.id
+    )
 
     private fun init() {
         shopListNameItem = intent.getSerializableExtra(SHOP_LIST_NAME) as ShopListNameItemDbModel
@@ -175,6 +175,9 @@ class ShopListActivity : AppCompatActivity() {
         }
         adapter.onLibraryDeleteClickListener = {
             viewModel.deleteLibraryItem(it)
+        }
+        adapter.onLibraryItemClickListener = {
+            viewModel.insertShopListItem(createShopListItem(it))
         }
     }
 

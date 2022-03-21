@@ -15,6 +15,7 @@ class ShopListItemAdapter : ListAdapter<ShopListItemDbModel, ShopItemHolder>(Sho
     var onEditClickListener: ((ShopListItemDbModel) -> Unit)? = null
     var onLibraryEditClickListener: ((ShopListItemDbModel) -> Unit)? = null
     var onLibraryDeleteClickListener: ((Int) -> Unit)? = null
+    var onLibraryItemClickListener: ((name: String) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopItemHolder {
         return when (viewType) {
             LIBRARY_ITEM -> {
@@ -51,6 +52,9 @@ class ShopListItemAdapter : ListAdapter<ShopListItemDbModel, ShopItemHolder>(Sho
                 }
                 imBtnDelete.setOnClickListener {
                     onLibraryDeleteClickListener?.invoke(item.id)
+                }
+                root.setOnClickListener {
+                    onLibraryItemClickListener?.invoke(item.name)
                 }
             }
         }
