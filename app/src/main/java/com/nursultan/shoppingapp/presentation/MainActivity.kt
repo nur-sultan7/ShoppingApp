@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.databinding.ActivityMainBinding
-import com.nursultan.shoppingapp.presentation.dialogs.NewListDialog
 import com.nursultan.shoppingapp.presentation.fragments.FragmentManager
 import com.nursultan.shoppingapp.presentation.fragments.NoteFragment
 import com.nursultan.shoppingapp.presentation.fragments.ShopListNamesFragment
