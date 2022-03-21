@@ -1,7 +1,6 @@
 package com.nursultan.shoppingapp.utils
 
 import android.view.View
-import com.nursultan.shoppingapp.data.database.model.ShopListItemDbModel
 
 object VisibilitySetter {
     fun setVisibilityByString(text: String?): Int {
