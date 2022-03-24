@@ -41,4 +41,11 @@
     <string name="chose_note_style">Chose note style</string>
     <string name="general_settings">General</string>
     <string name="chose_time_format">Chose time format</string>
+    <string name="remove_ads">Remove ads</string>
+    <string name="remove_ads_summary">Remove all ads from this app</string>
+    <string name="chose_theme">Chose theme</string>
+    <string name="content_text_size">Content text size</string>
+    <string name="title_text_size">Title text size</string>
+    <string name="note_text_settings">Note text settings</string>
+    <string name="theme_settings">Theme settings</string>
 </resources>

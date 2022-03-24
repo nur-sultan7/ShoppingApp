@@ -16,9 +16,35 @@
             android:key="time_formal_preference"
             android:title="@string/chose_time_format" />
         <Preference
-            android:title="Remove ads"
-            android:summary="Remove all ads from this app"
             android:icon="@drawable/ic_remove_ads"
-            />
+            android:summary="@string/remove_ads_summary"
+            android:title="@string/remove_ads" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/theme_settings">
+
+        <ListPreference
+            android:icon="@drawable/ic_theme_style"
+            android:defaultValue="1"
+            android:entries="@array/theme_style_entries"
+            android:entryValues="@array/theme_style_entries"
+            android:key="theme_style_preference"
+            android:title="@string/chose_theme" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/note_text_settings">
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/text_size_entries"
+            android:entryValues="@array/text_size_values"
+            android:icon="@drawable/ic_text_size"
+            android:key="title_text_key"
+            android:title="@string/title_text_size" />
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/text_size_entries"
+            android:entryValues="@array/text_size_values"
+            android:icon="@drawable/ic_text_size"
+            android:key="content_text_key"
+            android:title="@string/content_text_size" />
     </PreferenceCategory>
 </PreferenceScreen>

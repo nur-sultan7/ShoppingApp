@@ -16,4 +16,24 @@
         <item>hh:mm:ss - yyyy/MM/dd</item>
         <item>hh:mm:ss - dd/MM/yyyy</item>
     </string-array>
+    <string-array name="theme_style_entries">
+        <item>Blue theme</item>
+        <item>Green theme</item>
+    </string-array>
+    <string-array name="theme_style_values">
+        <item>Blue</item>
+        <item>Green</item>
+    </string-array>
+    <string-array name="text_size_entries">
+        <item>12 sp</item>
+        <item>14 sp</item>
+        <item>16 sp</item>
+        <item>18 sp</item>
+    </string-array>
+    <string-array name="text_size_values">
+        <item>12</item>
+        <item>14</item>
+        <item>16</item>
+        <item>18</item>
+    </string-array>
 </resources>
