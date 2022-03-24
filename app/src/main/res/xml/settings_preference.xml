@@ -37,11 +37,11 @@
     <PreferenceCategory android:title="@string/note_text_settings">
 
         <ListPreference
-            android:defaultValue="14"
+            android:defaultValue="18"
             android:entries="@array/text_size_entries"
             android:entryValues="@array/text_size_values"
             android:icon="@drawable/ic_text_size"
-            android:key="title_text_key"
+            android:key="@string/note_title_text_size_key"
             android:title="@string/title_text_size"
             app:useSimpleSummaryProvider="true" />
         <ListPreference
@@ -49,7 +49,7 @@
             android:entries="@array/text_size_entries"
             android:entryValues="@array/text_size_values"
             android:icon="@drawable/ic_text_size"
-            android:key="content_text_key"
+            android:key="@string/note_content_text_size_key"
             android:title="@string/content_text_size"
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>

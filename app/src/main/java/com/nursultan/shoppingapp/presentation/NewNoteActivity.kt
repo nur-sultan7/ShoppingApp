@@ -2,6 +2,7 @@ package com.nursultan.shoppingapp.presentation
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -13,30 +14,36 @@ import android.view.MenuItem
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.EditText
 import android.widget.TableRow
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.forEach
 import androidx.core.view.iterator
+import androidx.preference.PreferenceManager
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import com.nursultan.shoppingapp.databinding.ActivityNewNoteBinding
 import com.nursultan.shoppingapp.presentation.fragments.NoteFragment
 import com.nursultan.shoppingapp.utils.*
+import java.util.prefs.Preferences
 
 class NewNoteActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityNewNoteBinding.inflate(layoutInflater)
     }
     private var edNote: NoteItemDbModel? = null
+    private var preferences: SharedPreferences? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        preferences = PreferenceManager.getDefaultSharedPreferences(this)
         setActionBarSetting()
-        getNote()
+        setNote()
         setOnTouchListeners()
         setOnClickListeners()
         setEditTextActionMode()
+        setEditTextSizes()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -99,7 +106,7 @@ class NewNoteActivity : AppCompatActivity() {
         )
     }
 
-    private fun getNote() {
+    private fun setNote() {
         val note = intent.getSerializableExtra(NoteFragment.ED_NOTE)
         edNote = note?.let { it as NoteItemDbModel }
         edNote?.let {
@@ -129,10 +136,13 @@ class NewNoteActivity : AppCompatActivity() {
         edDescription.setSelection(firstIndex)
     }
 
-    private fun openColorPicker() {
-        binding.colorPicker.visibility = View.VISIBLE
-        val openAnim = AnimationUtils.loadAnimation(this, R.anim.open_color_picker)
-        binding.colorPicker.startAnimation(openAnim)
+    private fun openColorPicker() = with(binding) {
+        colorPicker.visibility = View.VISIBLE
+        val openAnim = AnimationUtils.loadAnimation(
+            this@NewNoteActivity,
+            R.anim.open_color_picker
+        )
+        colorPicker.startAnimation(openAnim)
     }
 
     private fun closeColorPicker() {
@@ -183,5 +193,26 @@ class NewNoteActivity : AppCompatActivity() {
 
     private fun setEditTextActionMode() {
         binding.edDescription.customSelectionActionModeCallback = EditTextActionMode
+    }
+
+    private fun setEditTextSizes() = with(binding) {
+        edTitle.setTextSize(
+            preferences?.getString(
+                getString(R.string.note_title_text_size_key),
+                null
+            )
+        )
+        edDescription.setTextSize(
+            preferences?.getString(
+                getString(R.string.note_content_text_size_key),
+                null
+            )
+        )
+    }
+
+    private fun EditText.setTextSize(size: String?) {
+        size?.let {
+            this.textSize = it.toFloat()
+        }
     }
 }
