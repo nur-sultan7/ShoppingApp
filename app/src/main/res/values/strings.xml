@@ -38,4 +38,7 @@
     <string name="edit_shop_list_item_info">Item info</string>
     <string name="edit_shop_item_name_title">Name</string>
     <string name="share_list_chooser_title">Send by</string>
+    <string name="chose_note_style">Chose note style</string>
+    <string name="general_settings">General</string>
+    <string name="chose_time_format">Chose time format</string>
 </resources>

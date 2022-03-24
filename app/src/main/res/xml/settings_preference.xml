@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/general_settings">
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/note_style_array"
+            android:entryValues="@array/note_style_values"
+            android:icon="@drawable/ic_chose_style"
+            android:key="note_style_preference"
+            android:title="@string/chose_note_style" />
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/time_format_entries"
+            android:entryValues="@array/time_format_entry_values"
+            android:icon="@drawable/ic_time_format"
+            android:key="time_formal_preference"
+            android:title="@string/chose_time_format" />
+        <Preference
+            android:title="Remove ads"
+            android:summary="Remove all ads from this app"
+            android:icon="@drawable/ic_remove_ads"
+            />
+    </PreferenceCategory>
+</PreferenceScreen>
