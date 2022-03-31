@@ -29,7 +29,7 @@
                 android:contentDescription="@string/ic_delete"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_delete" />
+                app:srcCompat="@drawable/ic_delete2" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"

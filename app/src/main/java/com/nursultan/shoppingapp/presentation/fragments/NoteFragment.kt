@@ -10,7 +10,10 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.preference.PreferenceManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.nursultan.shoppingapp.ShoppingApp
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import com.nursultan.shoppingapp.databinding.FragmentNoteBinding
@@ -32,10 +35,16 @@ class NoteFragment : BaseFragment() {
 
     private lateinit var newNoteLauncher: ActivityResultLauncher<Intent>
     private lateinit var adapter: NotesListAdapter
+    private var pref: SharedPreferences? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         onNewNoteResult()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setAdapterLayoutManager()
     }
 
     override fun onClickNew() {
@@ -64,11 +73,24 @@ class NoteFragment : BaseFragment() {
 
     private fun initViews() = with(binding)
     {
-        rcViewNotes.layoutManager = LinearLayoutManager(activity)
-        val pref = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        val newFormat = pref.getString("time_formal_preference", null)
+        setAdapterLayoutManager()
+        val newFormat = pref?.getString("time_formal_preference", null)
         adapter = NotesListAdapter(newFormat)
         rcViewNotes.adapter = adapter
+    }
+
+    private fun setAdapterLayoutManager() = with(binding)
+    {
+        pref = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        rcViewNotes.layoutManager = getLayoutManager()
+    }
+
+    private fun <T : RecyclerView.LayoutManager> getLayoutManager(): T {
+        @Suppress("UNCHECKED_CAST")
+        return if (pref?.getString("note_style_preference", null) == "Linear")
+            LinearLayoutManager(activity) as T
+        else
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL) as T
     }
 
     private fun setObservers() {
@@ -90,6 +112,7 @@ class NoteFragment : BaseFragment() {
             )
         }
     }
+
 
     private fun onNewNoteResult() {
         newNoteLauncher =

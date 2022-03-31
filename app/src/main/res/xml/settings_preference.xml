@@ -24,7 +24,6 @@
             android:title="@string/remove_ads" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/theme_settings">
-
         <ListPreference
             android:defaultValue="Green"
             android:entries="@array/theme_style_entries"
@@ -35,7 +34,6 @@
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/note_text_settings">
-
         <ListPreference
             android:defaultValue="18"
             android:entries="@array/text_size_entries"
