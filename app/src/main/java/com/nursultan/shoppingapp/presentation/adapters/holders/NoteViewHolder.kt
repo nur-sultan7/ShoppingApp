@@ -6,15 +6,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import com.nursultan.shoppingapp.databinding.NoteListItemBinding
 import com.nursultan.shoppingapp.utils.HtmlManager
+import com.nursultan.shoppingapp.utils.TimeManager
 
 class NoteViewHolder(val binding: NoteListItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun setData(note: NoteItemDbModel) {
+    fun setData(note: NoteItemDbModel, timeFormat: String?) {
         with(binding)
         {
             tvTitle.text = note.title
             tvDescription.text = HtmlManager.getFromHtml(note.content)
-            tvTime.text = note.time
+            tvTime.text = TimeManager.getFormattedTime(note.time,timeFormat)
         }
     }
 

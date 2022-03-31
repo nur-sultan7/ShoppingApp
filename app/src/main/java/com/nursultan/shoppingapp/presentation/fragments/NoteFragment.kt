@@ -1,6 +1,7 @@
 package com.nursultan.shoppingapp.presentation.fragments
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nursultan.shoppingapp.ShoppingApp
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
@@ -63,7 +65,9 @@ class NoteFragment : BaseFragment() {
     private fun initViews() = with(binding)
     {
         rcViewNotes.layoutManager = LinearLayoutManager(activity)
-        adapter = NotesListAdapter()
+        val pref = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val newFormat = pref.getString("time_formal_preference", null)
+        adapter = NotesListAdapter(newFormat)
         rcViewNotes.adapter = adapter
     }
 
@@ -92,17 +96,14 @@ class NoteFragment : BaseFragment() {
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             {
 
-                when(it.resultCode)
-                {
-                    EDIT_RESULT_CODE->
-                    {
+                when (it.resultCode) {
+                    EDIT_RESULT_CODE -> {
                         mainViewModel.updateNote(
                             (it.data?.getSerializableExtra(ED_NOTE)
                                 ?: throw RuntimeException("updated note is null")) as NoteItemDbModel
                         )
                     }
-                    UPDATE_RESULT_CODE->
-                    {
+                    UPDATE_RESULT_CODE -> {
                         mainViewModel.insertNote(
                             (it.data?.getSerializableExtra(NEW_NOTE)
                                 ?: throw RuntimeException("new note is null")) as NoteItemDbModel

@@ -6,7 +6,7 @@ import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import com.nursultan.shoppingapp.presentation.adapters.holders.NoteViewHolder
 import com.nursultan.shoppingapp.presentation.adapters.utils.NoteDiffUtil
 
-class NotesListAdapter : ListAdapter<NoteItemDbModel, NoteViewHolder>(NoteDiffUtil) {
+class NotesListAdapter(private val timeFormat: String?) : ListAdapter<NoteItemDbModel, NoteViewHolder>(NoteDiffUtil) {
 
     lateinit var setOnDeleteListener: (id: Int) -> Unit
     lateinit var setOnItemClickListener: (note: NoteItemDbModel) -> Unit
@@ -17,7 +17,7 @@ class NotesListAdapter : ListAdapter<NoteItemDbModel, NoteViewHolder>(NoteDiffUt
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val item = getItem(position)
-        holder.setData(item)
+        holder.setData(item, timeFormat)
         holder.binding.ivDelete.setOnClickListener {
             setOnDeleteListener(item.id)
         }
