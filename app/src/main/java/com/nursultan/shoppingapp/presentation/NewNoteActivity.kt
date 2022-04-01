@@ -25,19 +25,20 @@ import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import com.nursultan.shoppingapp.databinding.ActivityNewNoteBinding
 import com.nursultan.shoppingapp.presentation.fragments.NoteFragment
 import com.nursultan.shoppingapp.utils.*
-import java.util.prefs.Preferences
 
 class NewNoteActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityNewNoteBinding.inflate(layoutInflater)
     }
     private var edNote: NoteItemDbModel? = null
-    private var preferences: SharedPreferences? = null
+    private val defPref by lazy {
+        PreferenceManager.getDefaultSharedPreferences(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(getSelectedTheme())
         setContentView(binding.root)
-        preferences = PreferenceManager.getDefaultSharedPreferences(this)
         setActionBarSetting()
         setNote()
         setOnTouchListeners()
@@ -197,13 +198,13 @@ class NewNoteActivity : AppCompatActivity() {
 
     private fun setEditTextSizes() = with(binding) {
         edTitle.setTextSize(
-            preferences?.getString(
+            defPref.getString(
                 getString(R.string.note_title_text_size_key),
                 null
             )
         )
         edDescription.setTextSize(
-            preferences?.getString(
+            defPref.getString(
                 getString(R.string.note_content_text_size_key),
                 null
             )
@@ -214,5 +215,12 @@ class NewNoteActivity : AppCompatActivity() {
         size?.let {
             this.textSize = it.toFloat()
         }
+    }
+
+    private fun getSelectedTheme(): Int {
+        return if (defPref.getString("theme_style_preference", null) == "Green")
+            R.style.Theme_ShoppingAppGreen
+        else
+            R.style.Theme_ShoppingAppBlack
     }
 }

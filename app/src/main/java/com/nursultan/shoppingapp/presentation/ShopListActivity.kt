@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.ShoppingApp
@@ -27,12 +28,16 @@ class ShopListActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels {
         ViewModelFactory((application as ShoppingApp).appDatabase)
     }
+    private val defPref by lazy {
+        PreferenceManager.getDefaultSharedPreferences(this)
+    }
     private lateinit var shopListNameItem: ShopListNameItemDbModel
     private lateinit var edItemName: EditText
     private lateinit var adapter: ShopListItemAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(getSelectedTheme())
         setContentView(binding.root)
         init()
         initViews()
@@ -201,5 +206,12 @@ class ShopListActivity : AppCompatActivity() {
 
     companion object {
         const val SHOP_LIST_NAME = "list_name"
+    }
+
+    private fun getSelectedTheme(): Int {
+        return if (defPref.getString("theme_style_preference", null) == "Green")
+            R.style.Theme_ShoppingAppGreen
+        else
+            R.style.Theme_ShoppingAppBlack
     }
 }

@@ -17,11 +17,11 @@
         <item>hh:mm:ss - dd/MM/yyyy</item>
     </string-array>
     <string-array name="theme_style_entries">
-        <item>Blue theme</item>
+        <item>Black theme</item>
         <item>Green theme</item>
     </string-array>
     <string-array name="theme_style_values">
-        <item>Blue</item>
+        <item>Black</item>
         <item>Green</item>
     </string-array>
     <string-array name="text_size_entries">
