@@ -1,6 +1,5 @@
 package com.nursultan.shoppingapp.utils
 
-import android.content.SharedPreferences
 import android.icu.util.Calendar
 import java.text.SimpleDateFormat
 import java.util.*
