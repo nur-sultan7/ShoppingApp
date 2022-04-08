@@ -2,7 +2,6 @@ package com.nursultan.shoppingapp.presentation
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -19,7 +18,6 @@ import android.widget.TableRow
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.forEach
 import androidx.core.view.iterator
-import androidx.preference.PreferenceManager
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
 import com.nursultan.shoppingapp.databinding.ActivityNewNoteBinding
@@ -31,13 +29,13 @@ class NewNoteActivity : AppCompatActivity() {
         ActivityNewNoteBinding.inflate(layoutInflater)
     }
     private var edNote: NoteItemDbModel? = null
-    private val defPref by lazy {
-        PreferenceManager.getDefaultSharedPreferences(this)
+    private val appPref by lazy {
+        AppPreferences(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(getSelectedTheme())
+        setTheme(appPref.getSelectedThemeId())
         setContentView(binding.root)
         setActionBarSetting()
         setNote()
@@ -198,13 +196,13 @@ class NewNoteActivity : AppCompatActivity() {
 
     private fun setEditTextSizes() = with(binding) {
         edTitle.setTextSize(
-            defPref.getString(
+            appPref.preferences.getString(
                 getString(R.string.note_title_text_size_key),
                 null
             )
         )
         edDescription.setTextSize(
-            defPref.getString(
+            appPref.preferences.getString(
                 getString(R.string.note_content_text_size_key),
                 null
             )
@@ -215,12 +213,5 @@ class NewNoteActivity : AppCompatActivity() {
         size?.let {
             this.textSize = it.toFloat()
         }
-    }
-
-    private fun getSelectedTheme(): Int {
-        return if (defPref.getString("theme_style_preference", null) == "Green")
-            R.style.Theme_ShoppingAppGreen
-        else
-            R.style.Theme_ShoppingAppBlack
     }
 }

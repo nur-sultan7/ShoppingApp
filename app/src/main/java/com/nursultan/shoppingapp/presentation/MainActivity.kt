@@ -1,28 +1,27 @@
 package com.nursultan.shoppingapp.presentation
 
 import android.content.Intent
-import android.icu.number.IntegerWidth
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.PreferenceManager
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.databinding.ActivityMainBinding
 import com.nursultan.shoppingapp.presentation.fragments.FragmentManager
 import com.nursultan.shoppingapp.presentation.fragments.NoteFragment
 import com.nursultan.shoppingapp.presentation.fragments.ShopListNamesFragment
 import com.nursultan.shoppingapp.presentation.settings.SettingsActivity
+import com.nursultan.shoppingapp.utils.AppPreferences
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
-    private val defPref by lazy {
-        PreferenceManager.getDefaultSharedPreferences(this)
+    private val appPreferences by lazy {
+        AppPreferences(this)
     }
     private var currentTheme: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        currentTheme = getSelectedThemeId()
+        currentTheme = appPreferences.getSelectedThemeId()
         setTheme(currentTheme)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -51,16 +50,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (currentTheme != getSelectedThemeId()) recreate()
+        if (currentTheme != appPreferences.getSelectedThemeId()) recreate()
     }
 
-    private fun getSelectedThemeId(): Int {
-        return if (getSelectedTheme() == "Green")
-            R.style.Theme_ShoppingAppGreen
-        else
-            R.style.Theme_ShoppingAppBlack
-    }
-
-    private fun getSelectedTheme() = defPref.getString("theme_style_preference", null)
 
 }

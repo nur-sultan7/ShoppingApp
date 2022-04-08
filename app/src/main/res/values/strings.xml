@@ -64,4 +64,5 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="note_title_text_size_key">title_text_key</string>
     <string name="note_content_text_size_key">content_text_key</string>
+    <string name="pref_key_theme">theme_style_preference</string>
 </resources>
