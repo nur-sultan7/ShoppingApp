@@ -1,8 +1,6 @@
 package com.nursultan.shoppingapp.presentation.settings
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.nursultan.shoppingapp.R
