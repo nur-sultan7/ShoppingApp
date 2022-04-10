@@ -29,6 +29,10 @@ class BillingManager(private val activity: AppCompatActivity) {
         })
     }
 
+    fun endConnection() {
+        bilClient?.endConnection()
+    }
+
     private fun getItem() {
         val skuList = ArrayList<String>()
         skuList.add(REMOVE_AD)
