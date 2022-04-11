@@ -10,9 +10,20 @@ import com.nursultan.shoppingapp.billing.BillingManager
 
 class SettingsFragment : PreferenceFragmentCompat() {
     private lateinit var bManager: BillingManager
+    private var removeAdsPref: Preference? = null
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_preference, rootKey)
+        init()
     }
+    private fun init() {
+        removeAdsPref = findPreference(getString(R.string.remove_ads_key))
+        removeAdsPref?.setOnPreferenceClickListener {
+            bManager = BillingManager(activity as AppCompatActivity)
+            bManager.startConnection()
+            true
+        }
+    }
+
 
     override fun onPreferenceTreeClick(preference: Preference): Boolean {
         if (preference.key == getString(R.string.pref_key_theme)) {
@@ -20,13 +31,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 val currentThemeName = (activity as SettingsActivity).currentTheme
                 if (currentThemeName != newValue)
                     activity?.recreate()
-                true
-            }
-        } else if (preference.key == getString(R.string.remove_ads_key)) {
-            preference.setOnPreferenceChangeListener { _, _ ->
-                Log.d("Billing test", "remove ads pressed")
-                bManager = BillingManager(activity as AppCompatActivity)
-                bManager.startConnection()
                 true
             }
         }
