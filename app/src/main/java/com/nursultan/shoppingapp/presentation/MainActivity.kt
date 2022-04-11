@@ -1,8 +1,10 @@
 package com.nursultan.shoppingapp.presentation
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.Preference
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
@@ -10,6 +12,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.nursultan.shoppingapp.R
+import com.nursultan.shoppingapp.billing.BillingManager
 import com.nursultan.shoppingapp.databinding.ActivityMainBinding
 import com.nursultan.shoppingapp.presentation.fragments.FragmentManager
 import com.nursultan.shoppingapp.presentation.fragments.NoteFragment
@@ -28,17 +31,21 @@ class MainActivity : AppCompatActivity() {
     private var iAd: InterstitialAd? = null
     private var adCounter = 0
     private val adCounterMax = 3
+    private lateinit var pref: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         currentTheme = appPreferences.getSelectedThemeId()
         setTheme(currentTheme)
         super.onCreate(savedInstanceState)
+        pref = getSharedPreferences(BillingManager.MAIN_PREF, MODE_PRIVATE)
         setContentView(binding.root)
         setBottomNavItemsListener()
         loadInterstitialAd()
     }
 
     private fun loadInterstitialAd() {
+        if (pref.getBoolean(BillingManager.REMOVE_ADS_KEY, false))
+            return
         val request = AdRequest.Builder().build()
         InterstitialAd.load(
             this,

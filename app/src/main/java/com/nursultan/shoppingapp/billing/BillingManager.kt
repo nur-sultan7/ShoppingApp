@@ -1,7 +1,11 @@
 package com.nursultan.shoppingapp.billing
 
+import android.content.Context
+import android.content.SharedPreferences
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.billingclient.api.*
+import com.google.android.gms.common.internal.Objects
 
 class BillingManager(private val activity: AppCompatActivity) {
     private var bilClient: BillingClient? = null
@@ -15,6 +19,13 @@ class BillingManager(private val activity: AppCompatActivity) {
             .setListener(getPurchasesUpdateListener())
             .enablePendingPurchases()
             .build()
+    }
+
+    private fun savePref(isPurchased: Boolean) {
+        val pref = activity.getSharedPreferences(MAIN_PREF, Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putBoolean(REMOVE_ADS_KEY, isPurchased)
+        editor.apply()
     }
 
     fun startConnection() {
@@ -64,7 +75,13 @@ class BillingManager(private val activity: AppCompatActivity) {
                     .setPurchaseToken(purchase.purchaseToken).build()
                 bilClient?.acknowledgePurchase(acParams) {
                     if (it.responseCode == BillingClient.BillingResponseCode.OK) {
-
+                        savePref(true)
+                        Toast.makeText(activity, "Remove ads is success!", Toast.LENGTH_SHORT)
+                            .show()
+                    } else {
+                        savePref(false)
+                        Toast.makeText(activity, "Remove ads is not success!", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
             }
@@ -73,5 +90,7 @@ class BillingManager(private val activity: AppCompatActivity) {
 
     companion object {
         const val REMOVE_AD = "remove_ad"
+        const val MAIN_PREF = "main_pref"
+        const val REMOVE_ADS_KEY = "remove_ads_key"
     }
 }
