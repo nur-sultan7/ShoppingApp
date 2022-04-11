@@ -15,6 +15,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.settings_preference, rootKey)
         init()
     }
+
     private fun init() {
         removeAdsPref = findPreference(getString(R.string.remove_ads_key))
         removeAdsPref?.setOnPreferenceClickListener {
