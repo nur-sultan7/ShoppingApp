@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadInterstitialAd() {
-        if (pref.getBoolean(BillingManager.REMOVE_ADS_KEY, false))
+        if (removeAdsIsPurchased())
             return
         val request = AdRequest.Builder().build()
         InterstitialAd.load(
@@ -61,8 +61,11 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
+    private fun removeAdsIsPurchased() =
+        pref.getBoolean(BillingManager.REMOVE_ADS_KEY, false)
+
     private fun showInterAd(adFinish: () -> Unit) {
-        if (iAd != null && adCounter > adCounterMax) {
+        if (iAd != null && !removeAdsIsPurchased() && adCounter > adCounterMax) {
             iAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
                 override fun onAdDismissedFullScreenContent() {
                     iAd = null

@@ -9,7 +9,7 @@ import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.billing.BillingManager
 
 class SettingsFragment : PreferenceFragmentCompat() {
-    private lateinit var bManager: BillingManager
+    private var bManager: BillingManager? = null
     private var removeAdsPref: Preference? = null
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_preference, rootKey)
@@ -20,7 +20,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         removeAdsPref = findPreference(getString(R.string.remove_ads_key))
         removeAdsPref?.setOnPreferenceClickListener {
             bManager = BillingManager(activity as AppCompatActivity)
-            bManager.startConnection()
+            bManager?.startConnection()
             true
         }
     }
@@ -39,7 +39,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     override fun onDestroy() {
-        bManager.endConnection()
+        bManager?.endConnection()
         super.onDestroy()
     }
 }
