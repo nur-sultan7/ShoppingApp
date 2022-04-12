@@ -9,6 +9,8 @@
     <color name="deep_green">#027065</color>
     <color name="black">#FF000000</color>
     <color name="black_light">#1C1C1C</color>
+    <color name="black_light2">#2E2E2E</color>
+    <color name="black_light3">#454545</color>
     <color name="white">#FFFFFFFF</color>
 
     <color name="picker_red">#F44336</color>
