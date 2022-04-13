@@ -54,15 +54,15 @@ interface AppDao {
     @Insert
     suspend fun insertLibraryItem(libraryItemDbModel: LibraryItemDbModel)
 
-    @Query("select exists (select * from library where name like :itemName)")
+    @Query("select exists (select * from help where name like :itemName)")
     suspend fun isExistLibraryItem(itemName: String): Boolean
 
-    @Query("select * from library where name like :name")
+    @Query("select * from help where name like :name")
     suspend fun getLibraryItems(name: String): List<LibraryItemDbModel>
 
     @Update
     suspend fun updateLibraryItem(item: LibraryItemDbModel)
 
-    @Query("delete from library where id is :id")
+    @Query("delete from help where id is :id")
     suspend fun deleteLibraryItem(id: Int)
 }
