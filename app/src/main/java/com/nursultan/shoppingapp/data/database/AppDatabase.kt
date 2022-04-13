@@ -1,6 +1,7 @@
 package com.nursultan.shoppingapp.data.database
 
 import android.app.Application
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -12,8 +13,9 @@ import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
 @Database(
     entities = [LibraryItemDbModel::class, NoteItemDbModel::class,
         ShopListItemDbModel::class, ShopListNameItemDbModel::class],
-    version = 4,
-    exportSchema = false
+    version = 7,
+    exportSchema = true,
+    autoMigrations = [AutoMigration(from = 6, to = 7)]
 )
 abstract class AppDatabase : RoomDatabase() {
     companion object {
