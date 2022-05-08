@@ -2,7 +2,6 @@ package com.nursultan.shoppingapp.presentation
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
@@ -19,7 +18,6 @@ import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
 import com.nursultan.shoppingapp.databinding.ActivityShopListBinding
 import com.nursultan.shoppingapp.presentation.adapters.ShopListItemAdapter
 import com.nursultan.shoppingapp.presentation.dialogs.EditListItemDialog
-import com.nursultan.shoppingapp.utils.OnTextChangeWatcher
 import com.nursultan.shoppingapp.utils.ShareHelper
 import com.nursultan.shoppingapp.utils.VisibilitySetter
 
