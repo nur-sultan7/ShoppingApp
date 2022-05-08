@@ -8,6 +8,8 @@ import android.view.MenuItem
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doOnTextChanged
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nursultan.shoppingapp.R
@@ -53,17 +55,24 @@ class ShopListActivity : AppCompatActivity() {
             saveItem.isVisible = false
             val addItem = menu.findItem(R.id.add_item)
             edItemName = addItem.actionView.findViewById(R.id.edShopListItem)
-            addItem.setOnActionExpandListener(expandActionView(saveItem, textWatcher()))
+            addItem.setOnActionExpandListener(expandActionView(saveItem))
 
         }
         return super.onCreateOptionsMenu(menu)
     }
 
-    private fun expandActionView(saveItem: MenuItem, textWatcher: TextWatcher) =
+    private fun expandActionView(saveItem: MenuItem) =
         object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
                 saveItem.isVisible = true
-                edItemName.addTextChangedListener(textWatcher)
+//                edItemName.addTextChangedListener(
+//                    onTextChanged = { text, _, _, _ ->
+//                        onTextChanged(text)
+//                    }
+//                )
+                edItemName.doOnTextChanged { text, _, _, _ ->
+                    onTextChanged(text)
+                }
                 setLibraryObserver()
                 viewModel.getLibraryItems("%%")
                 return true
@@ -71,7 +80,8 @@ class ShopListActivity : AppCompatActivity() {
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
                 saveItem.isVisible = false
-                edItemName.removeTextChangedListener(textWatcher)
+//                edItemName.removeTextChangedListener(textWatcher)
+                edItemName.addTextChangedListener()
                 edItemName.text = null
                 invalidateOptionsMenu()
                 removeLibraryObserver()
@@ -85,6 +95,10 @@ class ShopListActivity : AppCompatActivity() {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             viewModel.getLibraryItems("%$s%")
         }
+    }
+
+    private fun onTextChanged(s: CharSequence?) {
+        viewModel.getLibraryItems("%$s%")
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

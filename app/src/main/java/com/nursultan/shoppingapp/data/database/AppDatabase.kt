@@ -13,16 +13,16 @@ import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
         ShopListItemDbModel::class, ShopListNameItemDbModel::class],
     version = 8,
     exportSchema = true,
-    autoMigrations = [AutoMigration(from = 7, to = 8, spec = AppDatabase.MigrationSpecs::class)]
+//    autoMigrations = [AutoMigration(from = 7, to = 8, spec = AppDatabase.MigrationSpecs::class)]
 )
 abstract class AppDatabase : RoomDatabase() {
-    @RenameColumn(
-        tableName = "shopping_list_items",
-        fromColumnName = "price",
-        toColumnName = "item_price"
-    )
-    @RenameTable(fromTableName = "library", toTableName = "help")
-    class MigrationSpecs : AutoMigrationSpec
+//    @RenameColumn(
+//        tableName = "shopping_list_items",
+//        fromColumnName = "price",
+//        toColumnName = "item_price"
+//    )
+//    @RenameTable(fromTableName = "library", toTableName = "help")
+//    class MigrationSpecs : AutoMigrationSpec
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
