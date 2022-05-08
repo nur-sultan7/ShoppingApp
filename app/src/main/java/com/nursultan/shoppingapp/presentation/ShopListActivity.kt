@@ -65,11 +65,6 @@ class ShopListActivity : AppCompatActivity() {
         object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
                 saveItem.isVisible = true
-//                edItemName.addTextChangedListener(
-//                    onTextChanged = { text, _, _, _ ->
-//                        onTextChanged(text)
-//                    }
-//                )
                 edItemName.doOnTextChanged { text, _, _, _ ->
                     onTextChanged(text)
                 }
@@ -80,7 +75,6 @@ class ShopListActivity : AppCompatActivity() {
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
                 saveItem.isVisible = false
-//                edItemName.removeTextChangedListener(textWatcher)
                 edItemName.addTextChangedListener()
                 edItemName.text = null
                 invalidateOptionsMenu()
@@ -90,12 +84,6 @@ class ShopListActivity : AppCompatActivity() {
             }
 
         }
-
-    private fun textWatcher() = object : OnTextChangeWatcher() {
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            viewModel.getLibraryItems("%$s%")
-        }
-    }
 
     private fun onTextChanged(s: CharSequence?) {
         viewModel.getLibraryItems("%$s%")
