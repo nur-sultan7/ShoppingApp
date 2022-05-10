@@ -9,7 +9,6 @@
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,12 +17,16 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="5dp">
+            android:padding="10dp"
+            android:background="?attr/rcViewBackground"
+            >
 
             <EditText
                 android:id="@+id/edDescription"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:padding="5dp"
+                android:layout_marginTop="2dp"
                 android:autofillHints=""
                 android:gravity="top"
                 android:hint="@string/ed_description"
@@ -41,6 +44,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
+                android:padding="5dp"
                 android:hint="@string/ed_title"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
