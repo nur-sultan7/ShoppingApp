@@ -19,6 +19,7 @@ import com.nursultan.shoppingapp.databinding.ActivityShopListBinding
 import com.nursultan.shoppingapp.presentation.adapters.ShopListItemAdapter
 import com.nursultan.shoppingapp.presentation.dialogs.EditListItemDialog
 import com.nursultan.shoppingapp.utils.ShareHelper
+import com.nursultan.shoppingapp.utils.ThemeManager
 import com.nursultan.shoppingapp.utils.VisibilitySetter
 
 class ShopListActivity : AppCompatActivity() {
@@ -37,7 +38,7 @@ class ShopListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(getSelectedTheme())
+        setTheme(ThemeManager.getTheme(defPref))
         setContentView(binding.root)
         init()
         initViews()
@@ -206,12 +207,5 @@ class ShopListActivity : AppCompatActivity() {
 
     companion object {
         const val SHOP_LIST_NAME = "list_name"
-    }
-
-    private fun getSelectedTheme(): Int {
-        return if (defPref.getString("theme_style_preference", null) == "Green")
-            R.style.Theme_ShoppingAppGreen
-        else
-            R.style.Theme_ShoppingAppBlack
     }
 }

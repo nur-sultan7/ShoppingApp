@@ -19,15 +19,11 @@
         <!-- Customize items styles -->
         <item name="editTextStyle">@style/EditText.White</item>
         <item name="recyclerViewStyle">@style/RecyclerViewWhite</item>
+        <item name="cardViewStyle">@style/CardView.White</item>
     </style>
 
-    <style name="ButtonStyle" parent="Theme.ShoppingAppGreen">
 
-    </style>
 
-    <style name="ButtonStyle.Delete">
-        <item name="colorAccent">#F44336</item>
-    </style>
     <style name="Theme.ShoppingAppBlack" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/black_light</item>
@@ -50,26 +46,40 @@
         <item name="editTextStyle">@style/EditText.Black</item>
         <item name="recyclerViewStyle">@style/RecyclerViewBlack</item>
         <item name="cardViewStyle">@style/CardView.Black</item>
+        <item name="popupMenuBackground">@color/black_light2</item>
     </style>
+
     <style name="CardView.Black">
         <item name="android:backgroundTint">@color/black_light2</item>
     </style>
+
     <style name="CardView.White">
         <item name="android:backgroundTint">@color/white</item>
     </style>
-    <style name="RecyclerViewBlack" >
+
+    <style name="RecyclerViewBlack">
         <item name="android:background">@color/black</item>
     </style>
+
     <style name="RecyclerViewWhite">
         <item name="android:background">@color/white</item>
     </style>
+
     <style name="EditText.Black" parent="Widget.AppCompat.EditText">
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">@color/white</item>
         <item name="android:background">@color/black_light2</item>
     </style>
+
     <style name="EditText.White" parent="Widget.AppCompat.EditText">
         <item name="android:textColor">@color/black</item>
         <item name="android:textColorHint">@color/black</item>
+    </style>
+    <style name="ButtonStyle" parent="Theme.ShoppingAppGreen">
+
+    </style>
+
+    <style name="ButtonStyle.Delete">
+        <item name="colorAccent">#F44336</item>
     </style>
 </resources>

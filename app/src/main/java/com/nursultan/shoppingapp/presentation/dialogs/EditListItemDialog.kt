@@ -1,6 +1,8 @@
 package com.nursultan.shoppingapp.presentation.dialogs
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AlertDialog
@@ -36,7 +38,7 @@ object EditListItemDialog {
             }
         }
         dialog = builder.create()
-        dialog.window?.setBackgroundDrawable(null)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
     }
 }

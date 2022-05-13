@@ -2,6 +2,8 @@ package com.nursultan.shoppingapp.presentation.dialogs
 
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import com.nursultan.shoppingapp.databinding.DialogDeleteShoppingListNameBinding
 
@@ -19,7 +21,7 @@ object DeleteShopListNameDialog {
             deleteDialog?.dismiss()
         }
         deleteDialog = dialogBuilder.create()
-        deleteDialog.window?.setBackgroundDrawable(null)
+        deleteDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         deleteDialog.show()
     }
 }

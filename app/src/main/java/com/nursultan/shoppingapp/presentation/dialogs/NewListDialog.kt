@@ -2,6 +2,8 @@ package com.nursultan.shoppingapp.presentation.dialogs
 
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.databinding.DialogNewListBinding
@@ -31,7 +33,7 @@ object NewListDialog {
             }
         }
         dialog = builder.create()
-        dialog.window?.setBackgroundDrawable(null)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
     }
 }
