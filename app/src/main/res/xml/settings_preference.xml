@@ -19,7 +19,7 @@
             android:title="@string/chose_time_format"
             app:useSimpleSummaryProvider="true" />
         <Preference
-            android:icon="@drawable/ic_remove_ads"
+            android:icon="@drawable/ic_chose_style"
             android:key="@string/remove_ads_key"
             android:summary="@string/remove_ads_summary"
             android:title="@string/remove_ads" />

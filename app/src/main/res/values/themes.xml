@@ -47,6 +47,10 @@
         <item name="recyclerViewStyle">@style/RecyclerViewBlack</item>
         <item name="cardViewStyle">@style/CardView.Black</item>
         <item name="popupMenuBackground">@color/black_light2</item>
+        <item name="dialogPreferenceStyle">@style/dialogAlertTheme</item>
+    </style>
+    <style name="dialogAlertTheme" parent="@android:style/Theme.Dialog.Alert">
+        <item name="android:windowBackground">@color/black</item>
     </style>
 
     <style name="CardView.Black">
