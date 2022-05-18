@@ -1,8 +1,8 @@
 package com.nursultan.shoppingapp.presentation
 
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
@@ -16,7 +16,7 @@ import com.nursultan.shoppingapp.databinding.ActivityMainBinding
 import com.nursultan.shoppingapp.presentation.fragments.FragmentManager
 import com.nursultan.shoppingapp.presentation.fragments.NoteFragment
 import com.nursultan.shoppingapp.presentation.fragments.ShopListNamesFragment
-import com.nursultan.shoppingapp.presentation.settings.SettingsActivity
+import com.nursultan.shoppingapp.presentation.settings.SettingsFragment
 import com.nursultan.shoppingapp.utils.AppPreferences
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     private val appPreferences by lazy {
         AppPreferences(this)
     }
+    val currentThemeName: String?
+        get() = appPreferences.getSelectedTheme()
     private var currentTheme: Int = 0
     private var iAd: InterstitialAd? = null
     private var adCounter = 0
@@ -33,12 +35,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var pref: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         currentTheme = appPreferences.getSelectedThemeId()
         setTheme(currentTheme)
-        super.onCreate(savedInstanceState)
         pref = getSharedPreferences(BillingManager.MAIN_PREF, MODE_PRIVATE)
         setContentView(binding.root)
         setBottomNavItemsListener()
+        var startItemId = R.id.nav_shopping_list
+        savedInstanceState?.let {
+            startItemId = it.getInt(START_ITEM_ID)
+        }
+        binding.bNav.selectedItemId = startItemId
         loadInterstitialAd()
     }
 
@@ -96,7 +103,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.nav_setting -> {
                     showInterAd {
-                        startActivity(Intent(this, SettingsActivity::class.java))
+                        FragmentManager.setFragment(this, SettingsFragment.newInstance())
                     }
                 }
                 R.id.nav_notes -> {
@@ -120,5 +127,16 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         if (currentTheme != appPreferences.getSelectedThemeId()) recreate()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        outState.apply {
+            putInt(START_ITEM_ID, binding.bNav.selectedItemId)
+        }
+        super.onSaveInstanceState(outState, outPersistentState)
+    }
+
+    companion object {
+        const val START_ITEM_ID = "start item id"
     }
 }

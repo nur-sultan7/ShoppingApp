@@ -7,8 +7,10 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.billing.BillingManager
+import com.nursultan.shoppingapp.presentation.MainActivity
+import com.nursultan.shoppingapp.presentation.fragments.BaseFragment
 
-class SettingsFragment : PreferenceFragmentCompat() {
+class SettingsFragment : PreferenceFragmentCompat(), BaseFragment {
     private var bManager: BillingManager? = null
     private var removeAdsPref: Preference? = null
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -29,7 +31,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onPreferenceTreeClick(preference: Preference): Boolean {
         if (preference.key == getString(R.string.pref_key_theme)) {
             preference.setOnPreferenceChangeListener { _, newValue ->
-                val currentThemeName = (activity as SettingsActivity).currentTheme
+                val currentThemeName = (activity as MainActivity).currentThemeName
                 if (currentThemeName != newValue)
                     activity?.recreate()
                 true
@@ -41,5 +43,13 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onDestroy() {
         bManager?.endConnection()
         super.onDestroy()
+    }
+
+    companion object {
+        fun newInstance() = SettingsFragment()
+    }
+
+    override fun onClickNew() {
+
     }
 }

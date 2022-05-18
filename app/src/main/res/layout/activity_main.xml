@@ -23,6 +23,7 @@
         android:id="@+id/mainFrame"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="?attr/menuPanelBackground"
         app:layout_constraintBottom_toTopOf="@+id/bNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nursultan.shoppingapp.ShoppingApp
@@ -20,7 +21,7 @@ import com.nursultan.shoppingapp.utils.TimeManager
 import java.lang.RuntimeException
 
 
-class ShopListNamesFragment : BaseFragment() {
+class ShopListNamesFragment : Fragment(), BaseFragment {
     private var _binding: FragmentShopListNamesBinding? = null
     private val binding: FragmentShopListNamesBinding
         get() = _binding ?: throw RuntimeException("binding is null")
@@ -42,10 +43,6 @@ class ShopListNamesFragment : BaseFragment() {
                 )
             )
         }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -88,8 +85,9 @@ class ShopListNamesFragment : BaseFragment() {
         }
         adapter.onItemClickListener = {
             startActivity(Intent(
-                activity, ShopListActivity::class.java).apply {
-                    putExtra(ShopListActivity.SHOP_LIST_NAME, it)
+                activity, ShopListActivity::class.java
+            ).apply {
+                putExtra(ShopListActivity.SHOP_LIST_NAME, it)
             })
         }
     }

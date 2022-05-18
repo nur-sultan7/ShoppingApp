@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
@@ -23,7 +24,7 @@ import com.nursultan.shoppingapp.presentation.ViewModelFactory
 import com.nursultan.shoppingapp.presentation.adapters.NotesListAdapter
 
 
-class NoteFragment : BaseFragment() {
+class NoteFragment : Fragment(), BaseFragment {
 
     private var _binding: FragmentNoteBinding? = null
     private val binding: FragmentNoteBinding
