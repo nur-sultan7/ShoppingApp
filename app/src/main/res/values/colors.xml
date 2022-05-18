@@ -13,6 +13,7 @@
     <color name="black_light3">#454545</color>
     <color name="white">#FFFFFFFF</color>
 
+
     <color name="picker_red">#F44336</color>
     <color name="picker_orange">#FF5722</color>
     <color name="picker_blue">#00BCD4</color>
@@ -20,4 +21,5 @@
     <color name="picker_green">#4CAF50</color>
     <color name="picker_purple">#673AB7</color>
     <color name="grey">#8A8888</color>
+    <color name="grey_light">#FBF9F9</color>
 </resources>
