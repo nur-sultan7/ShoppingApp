@@ -18,7 +18,7 @@
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/nav_new_item"
-        android:icon="@drawable/ic_new_item"
-        android:title="@string/new_item"
+        android:icon="@drawable/ic_fridge_24"
+        android:title="@string/label_fridge"
         app:showAsAction="ifRoom" />
 </menu>
