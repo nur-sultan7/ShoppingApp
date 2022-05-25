@@ -68,4 +68,5 @@
     <!-- Preferences keys -->
     <string name="pref_key_theme">theme_style_preference</string>
     <string name="remove_ads_key">remove_ads_key</string>
+    <string name="add_to_fridge_item">Add to fridge item</string>
 </resources>
