@@ -14,6 +14,7 @@ import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.billing.BillingManager
 import com.nursultan.shoppingapp.databinding.ActivityMainBinding
 import com.nursultan.shoppingapp.presentation.fragments.FragmentManager
+import com.nursultan.shoppingapp.presentation.fragments.FridgeFragment
 import com.nursultan.shoppingapp.presentation.fragments.NoteFragment
 import com.nursultan.shoppingapp.presentation.fragments.ShopListNamesFragment
 import com.nursultan.shoppingapp.presentation.settings.SettingsFragment
@@ -115,9 +116,7 @@ class MainActivity : AppCompatActivity() {
                     FragmentManager.setFragment(this, ShopListNamesFragment.newInstance())
                 }
                 R.id.nav_new_item -> {
-                    showInterAd {
-                        FragmentManager.currentFrag?.onClickNew()
-                    }
+                    FragmentManager.setFragment(this, FridgeFragment.newInstance())
                 }
             }
             true

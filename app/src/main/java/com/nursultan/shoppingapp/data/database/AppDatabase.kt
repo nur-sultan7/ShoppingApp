@@ -1,28 +1,27 @@
 package com.nursultan.shoppingapp.data.database
 
 import android.app.Application
-import androidx.room.*
-import androidx.room.migration.AutoMigrationSpec
-import com.nursultan.shoppingapp.data.database.model.LibraryItemDbModel
-import com.nursultan.shoppingapp.data.database.model.NoteItemDbModel
-import com.nursultan.shoppingapp.data.database.model.ShopListItemDbModel
-import com.nursultan.shoppingapp.data.database.model.ShopListNameItemDbModel
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import com.nursultan.shoppingapp.data.database.model.*
 
 @Database(
     entities = [LibraryItemDbModel::class, NoteItemDbModel::class,
-        ShopListItemDbModel::class, ShopListNameItemDbModel::class],
-    version = 8,
-    exportSchema = true,
-    autoMigrations = [AutoMigration(from = 7, to = 8, spec = AppDatabase.MigrationSpecs::class)]
+        ShopListItemDbModel::class, ShopListNameItemDbModel::class,
+        FridgeItemDbModel::class],
+    version = 9,
+    exportSchema = false,
+//    autoMigrations = [AutoMigration(from = 7, to = 8, spec = AppDatabase.MigrationSpecs::class)]
 )
 abstract class AppDatabase : RoomDatabase() {
-        @RenameColumn(
-        tableName = "shopping_list_items",
-        fromColumnName = "price",
-        toColumnName = "item_price"
-    )
-    @RenameTable(fromTableName = "library", toTableName = "help")
-    class MigrationSpecs : AutoMigrationSpec
+    //    @RenameColumn(
+//        tableName = "shopping_list_items",
+//        fromColumnName = "price",
+//        toColumnName = "item_price"
+//    )
+//    @RenameTable(fromTableName = "library", toTableName = "help")
+//    class MigrationSpecs : AutoMigrationSpec
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
@@ -37,6 +36,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "app_db.db"
                 )
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance

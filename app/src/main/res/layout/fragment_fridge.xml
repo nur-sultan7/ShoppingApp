@@ -23,13 +23,15 @@
             android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
+            android:backgroundTint="@color/black_light2"
             android:clickable="true"
             android:contentDescription="@string/add_to_fridge_item"
             android:focusable="true"
-            android:src="@drawable/add_ic"
+            android:src="@drawable/ic_add_floating_button"
             app:layout_constraintBottom_toBottomOf="@+id/rvFridgeItems"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/grey_light" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

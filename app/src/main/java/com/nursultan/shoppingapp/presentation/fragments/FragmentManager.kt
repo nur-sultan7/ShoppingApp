@@ -10,6 +10,9 @@ object FragmentManager {
         activity.supportFragmentManager.beginTransaction()
             .replace(R.id.mainFrame, fragment)
             .commit()
-        currentFrag = fragment as BaseFragment
+        currentFrag = if (fragment is BaseFragment)
+            fragment
+        else
+            null
     }
 }
