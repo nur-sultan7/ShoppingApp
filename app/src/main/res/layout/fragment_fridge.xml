@@ -20,7 +20,7 @@
             app:tabBackground="?attr/tabBackgroundFridge"
             app:tabMode="fixed"
             app:tabTextAppearance="@style/FridgeTabsStyle"
-            app:tabTextColor="?attr/tabTextColorFridge">
+            app:tabTextColor="@color/white">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"

@@ -9,6 +9,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.databinding.FragmentFridgeBinding
 import com.nursultan.shoppingapp.databinding.FragmentNoteBinding
+import com.nursultan.shoppingapp.presentation.adapters.FridgeVIewPagerAdapter
 
 
 class FridgeFragment : Fragment() {
@@ -27,6 +28,7 @@ class FridgeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        biding.viewPagerFridge.adapter = FridgeVIewPagerAdapter(this)
         TabLayoutMediator(biding.tabLayoutFridge, biding.viewPagerFridge){tab, position->
 
         }.attach()
