@@ -24,6 +24,8 @@
         <item name="editTextStyle">@style/EditText.White</item>
         <item name="recyclerViewStyle">@style/RecyclerViewWhite</item>
         <item name="cardViewStyle">@style/CardView.White</item>
+        <item name="tabBackgroundFridge">@color/white</item>
+        <item name="tabTextColorFridge">@color/black</item>
     </style>
 
     <style name="Theme.ShoppingAppBlack" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
@@ -52,6 +54,8 @@
         <item name="cardViewStyle">@style/CardView.Black</item>
         <item name="popupMenuBackground">@color/black_light2</item>
         <item name="alertDialogTheme">@style/PreferenceDialogTheme</item>
+        <item name="tabBackgroundFridge">@color/black</item>
+        <item name="tabTextColorFridge">@color/white</item>
     </style>
     <!-- Style for preference screen dialogs-->
     <style name="PreferenceDialogTheme" parent="Theme.AppCompat.Dialog.Alert">
@@ -88,6 +92,9 @@
     </style>
 
     <style name="ButtonStyle" parent="Theme.ShoppingAppGreen">
+
+    </style>
+    <style name="FridgeTabsStyle" parent="TextAppearance.Design.Tab">
 
     </style>
 

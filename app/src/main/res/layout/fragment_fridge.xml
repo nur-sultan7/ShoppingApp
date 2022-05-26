@@ -10,28 +10,53 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvFridgeItems"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayoutFridge"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabBackground="?attr/tabBackgroundFridge"
+            app:tabMode="fixed"
+            app:tabTextAppearance="@style/FridgeTabsStyle"
+            app:tabTextColor="?attr/tabTextColorFridge">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_fridge" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_freezer" />
+
+        </com.google.android.material.tabs.TabLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:backgroundTint="@color/black_light2"
             android:clickable="true"
             android:contentDescription="@string/add_to_fridge_item"
             android:focusable="true"
             android:src="@drawable/ic_add_floating_button"
-            app:layout_constraintBottom_toBottomOf="@+id/rvFridgeItems"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:tint="@color/grey_light" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPagerFridge"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayoutFridge" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

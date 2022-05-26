@@ -70,4 +70,7 @@
     <string name="remove_ads_key">remove_ads_key</string>
     <string name="add_to_fridge_item">Add to fridge item</string>
     <string name="label_fridge">Fridge</string>
+    <string name="tvLabelFridge">Fridge</string>
+    <string name="tvLabelFreeze">Freeze</string>
+    <string name="label_freezer">Freezer</string>
 </resources>

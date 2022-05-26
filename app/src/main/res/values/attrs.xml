@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="rcViewBackground" format="color" />
-    <attr name="rcViewItemBackground" format="color"/>
-    <attr name="menuPanelBackground" format="color"/>
-    <attr name="tvColor" format="color"/>
-    <attr name="menuPanelItemSelectedFalse" format="color"/>
-    <attr name="menuPanelItemSelectedTrue" format="color"/>
+    <attr name="rcViewItemBackground" format="color" />
+    <attr name="menuPanelBackground" format="color" />
+    <attr name="tvColor" format="color" />
+    <attr name="menuPanelItemSelectedFalse" format="color" />
+    <attr name="menuPanelItemSelectedTrue" format="color" />
+    <attr name="tabBackgroundFridge" format="color" />
+    <attr name="tabTextColorFridge" format="color" />
 </resources>
