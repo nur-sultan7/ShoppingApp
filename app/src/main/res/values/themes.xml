@@ -95,7 +95,8 @@
 
     </style>
     <style name="FridgeTabsStyle" parent="TextAppearance.Design.Tab">
-
+        <item name="android:textAllCaps">false</item>
+        <item name="textAllCaps">false</item>
     </style>
 
     <style name="ButtonStyle.Delete">
