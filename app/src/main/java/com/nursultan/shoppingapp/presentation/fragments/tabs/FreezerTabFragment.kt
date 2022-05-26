@@ -19,7 +19,7 @@ class FreezerTabFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_freexer_tab, container, false)
+        return inflater.inflate(R.layout.fragment_freezer_tab, container, false)
     }
 
     companion object {
