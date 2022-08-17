@@ -1,8 +1,8 @@
 package com.nursultan.shoppingapp.data.database.model
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+
 @Entity(tableName = "fridge_items")
 data class FridgeItemDbModel(
     @PrimaryKey(autoGenerate = true)
