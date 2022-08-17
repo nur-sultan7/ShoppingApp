@@ -10,13 +10,13 @@
         android:id="@+id/bNav"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:minHeight="50dp"
         android:background="?attr/menuPanelBackground"
+        android:minHeight="50dp"
+        app:itemIconTint="@drawable/bottom_nav_colors"
+        app:itemTextColor="@drawable/bottom_nav_colors"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:itemIconTint="@drawable/bottom_nav_colors"
-        app:itemTextColor="@drawable/bottom_nav_colors"
         app:menu="@menu/bottom_nav_menu" />
 
     <FrameLayout
