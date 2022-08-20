@@ -10,7 +10,6 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.databinding.FragmentFridgeBinding
-import com.nursultan.shoppingapp.databinding.FragmentNoteBinding
 import com.nursultan.shoppingapp.presentation.adapters.FridgeVIewPagerAdapter
 import com.nursultan.shoppingapp.presentation.fragments.tabs.FreezerTabFragment
 import com.nursultan.shoppingapp.presentation.fragments.tabs.FridgeTabFragment
