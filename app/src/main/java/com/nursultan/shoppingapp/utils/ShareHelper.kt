@@ -2,7 +2,6 @@ package com.nursultan.shoppingapp.utils
 
 import android.content.Intent
 import com.nursultan.shoppingapp.data.database.model.ShopListItemDbModel
-import java.lang.StringBuilder
 
 object ShareHelper {
     fun shareShopList(shopList: List<ShopListItemDbModel>, shopListName: String): Intent {
