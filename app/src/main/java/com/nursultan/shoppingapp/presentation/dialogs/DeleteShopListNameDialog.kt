@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import com.nursultan.shoppingapp.databinding.DialogDeleteShoppingListNameBinding
 
 object DeleteShopListNameDialog {
-    fun show(context: Context,  onDeleteClick: ()->Unit) {
+    fun show(context: Context, onDeleteClick: () -> Unit) {
         var deleteDialog: AlertDialog? = null
         val dialogBuilder = AlertDialog.Builder(context)
         val binding = DialogDeleteShoppingListNameBinding.inflate(LayoutInflater.from(context))
