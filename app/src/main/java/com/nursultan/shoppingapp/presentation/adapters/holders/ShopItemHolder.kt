@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import androidx.viewbinding.ViewBindings
 import com.nursultan.shoppingapp.R
 import com.nursultan.shoppingapp.data.database.model.ShopListItemDbModel
 import com.nursultan.shoppingapp.databinding.ItemLibraryShopListBinding

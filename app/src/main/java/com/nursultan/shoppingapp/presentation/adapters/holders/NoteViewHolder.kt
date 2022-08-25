@@ -15,7 +15,7 @@ class NoteViewHolder(val binding: NoteListItemBinding) :
         {
             tvTitle.text = note.title
             tvDescription.text = HtmlManager.getFromHtml(note.content)
-            tvTime.text = TimeManager.getFormattedTime(note.time,timeFormat)
+            tvTime.text = TimeManager.getFormattedTime(note.time, timeFormat)
         }
     }
 
