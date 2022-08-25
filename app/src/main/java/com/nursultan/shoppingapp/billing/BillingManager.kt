@@ -1,11 +1,9 @@
 package com.nursultan.shoppingapp.billing
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.billingclient.api.*
-import com.google.android.gms.common.internal.Objects
 
 class BillingManager(private val activity: AppCompatActivity) {
     private var bilClient: BillingClient? = null
