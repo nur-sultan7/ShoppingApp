@@ -23,6 +23,6 @@ data class ShopListItemDbModel(
     val checked: Boolean = false,
     val listId: Int,
     val type: Int = 0,
-    @ColumnInfo(name="item_price", defaultValue = "not specified")
+    @ColumnInfo(name = "item_price", defaultValue = "not specified")
     val itemPrice: String = "not specified"
 )
