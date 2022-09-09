@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface AppDao {
+
     //note queries
     @Insert
     suspend fun insertNote(note: NoteItemDbModel)
