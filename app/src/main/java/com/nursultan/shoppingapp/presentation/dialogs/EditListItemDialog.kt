@@ -23,8 +23,7 @@ object EditListItemDialog {
         {
             edListItemName.setText(shopListItem.name)
             edListItemInfo.setText(shopListItem.info)
-            if (shopListItem.type==1)
-            {
+            if (shopListItem.type == 1) {
                 edListItemInfo.visibility = View.GONE
             }
             btnUpdate.setOnClickListener {
