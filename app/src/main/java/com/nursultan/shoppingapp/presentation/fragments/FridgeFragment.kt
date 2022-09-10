@@ -59,8 +59,6 @@ class FridgeFragment : Fragment() {
         }
         )
     }
-
-
     override fun onDestroyView() {
         _biding = null
         super.onDestroyView()

@@ -26,7 +26,6 @@ class SettingsFragment : PreferenceFragmentCompat(), BaseFragment {
         }
     }
 
-
     override fun onPreferenceTreeClick(preference: Preference): Boolean {
         if (preference.key == getString(R.string.pref_key_theme)) {
             preference.setOnPreferenceChangeListener { _, newValue ->

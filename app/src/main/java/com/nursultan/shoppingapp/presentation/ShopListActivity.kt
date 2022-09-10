@@ -47,16 +47,13 @@ class ShopListActivity : AppCompatActivity() {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.shop_list_menu, menu)
-        menu?.let {
-            val saveItem = menu.findItem(R.id.save_item)
-            saveItem.isVisible = false
-            val addItem = menu.findItem(R.id.add_item)
-            edItemName = addItem.actionView.findViewById(R.id.edShopListItem)
-            addItem.setOnActionExpandListener(expandActionView(saveItem))
-
-        }
+        val saveItem = menu.findItem(R.id.save_item)
+        saveItem.isVisible = false
+        val addItem = menu.findItem(R.id.add_item)
+        edItemName = addItem.actionView.findViewById(R.id.edShopListItem)
+        addItem.setOnActionExpandListener(expandActionView(saveItem))
         return super.onCreateOptionsMenu(menu)
     }
 
